@@ -197,14 +197,14 @@ button:active {
 }
 
 #filter-container {
-    margin-top: 20px;
+    margin-top: 0px;
     display: flex;
     justify-content: right;
     gap: 10px;
 }
 
 #filter-container input {
-    padding: 5px;
+    padding: 1px;
     border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 1rem;

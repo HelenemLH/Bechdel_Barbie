@@ -68,7 +68,6 @@ function createMovieElement() {
         <div class="year"></div>
         <div class="rating"></div>
         <a class="poster-link" href="" target="_blank"><img class="movie-poster" src="" alt="Movie Poster"/></a>
-        <div class="imdb-link"></div>
     `;
     return movieElement;
 }
