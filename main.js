@@ -209,4 +209,31 @@ document.getElementById("filter-form").addEventListener("submit", function(event
     displayPage(1, filters);
 });
 
+async function showSuggestions() {
+    const query = document.getElementById("searchbartext").value;
+    if (query.length < 3) {
+        document.getElementById("suggestions-dropdown").innerHTML = "";
+        return;
+    }
+
+    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${query}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const suggestionsDropdown = document.getElementById("suggestions-dropdown");
+    suggestionsDropdown.innerHTML = "";
+
+    data.slice(0, 5).forEach(movie => {
+        const suggestionItem = document.createElement("div");
+        suggestionItem.classList.add("suggestion-item");
+        suggestionItem.textContent = `${movie.title} (${movie.year})`;
+        suggestionItem.addEventListener("click", () => {
+            document.getElementById("searchbartext").value = movie.title;
+            suggestionsDropdown.innerHTML = "";
+            findMovie();
+        });
+        suggestionsDropdown.appendChild(suggestionItem);
+    });
+}
+
 fetchThreeStarMovies();

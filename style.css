@@ -133,6 +133,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
     margin-bottom: 0px;
+    position: relative;
 }
 
 #searchbar:hover {
@@ -197,20 +198,21 @@ button:active {
 }
 
 #filter-container {
-    margin-top: 0px;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
+    margin-top: 20px;
     gap: 10px;
 }
 
 #filter-container input {
-    padding: 1px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 1rem;
     outline: none;
     transition: border 0.3s, background-color 0.3s;
     width: 100px;
+    height: 30px;
 }
 
 #filter-container input:focus {
@@ -226,6 +228,7 @@ button:active {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    height: 45px;
 }
 
 #filter-container button:hover {
@@ -237,7 +240,7 @@ button:active {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -346,6 +349,33 @@ a {
     text-decoration: none;
     color: white;
     font-size: 60px;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    width: calc(100% - 20px);
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 5px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.dropdown-content .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content .suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content .suggestion-item:hover {
+    background-color: #f1f1f1;
 }
 
 .pagination-button {
