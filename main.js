@@ -118,7 +118,7 @@ async function getRandomMovie() {
 
 let threeStarMovies = [];
 let currentPage = 1;
-const moviesPerPage = 4;
+const moviesPerPage = 5;
 
 async function fetchThreeStarMovies() {
     const allMovies = await fetchAllMovies();
