@@ -250,13 +250,13 @@ button:active {
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-    text-align: center;
+    text-align: left;
 }
 
 #suggestions-list {
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    gap: 20px; 
+    justify-content: space-between;
 }
 
 .suggestion-item {

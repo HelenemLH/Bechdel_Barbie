@@ -189,8 +189,8 @@ function displayPagination(totalMovies, filters) {
     paginationContainer.innerHTML = "";
 
     const totalPages = Math.ceil(totalMovies / moviesPerPage);
-    const maxPagesToShow = 15; // Change to 15 buttons
-    const startPage = Math.floor((currentPage - 1) / maxPagesToShow) * maxPagesToShow + 1;
+    const maxPagesToShow = 15;  // Show only 15 pages
+    const startPage = Math.max(Math.min(currentPage - Math.floor(maxPagesToShow / 2), totalPages - maxPagesToShow + 1), 1);
     const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
 
     for (let i = startPage; i <= endPage; i++) {
@@ -204,21 +204,20 @@ function displayPagination(totalMovies, filters) {
         paginationContainer.appendChild(pageButton);
     }
 
-    const nextButton = document.createElement("button");
-    nextButton.innerText = "Next";
-    nextButton.classList.add("pagination-button");
-    if (currentPage === totalPages) {
-        nextButton.disabled = true;
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement("button");
+        nextButton.innerText = "Next";
+        nextButton.classList.add("pagination-button");
+        nextButton.addEventListener("click", () => displayPage(currentPage + 1, filters));
+        paginationContainer.appendChild(nextButton);
     }
-    nextButton.addEventListener("click", () => displayPage(currentPage + 1, filters));
-    paginationContainer.appendChild(nextButton);
 
-    if (endPage < totalPages) {
-        const lastButton = document.createElement("button");
-        lastButton.innerText = "Last";
-        lastButton.classList.add("pagination-button");
-        lastButton.addEventListener("click", () => displayPage(totalPages, filters));
-        paginationContainer.appendChild(lastButton);
+    if (currentPage > 1) {
+        const prevButton = document.createElement("button");
+        prevButton.innerText = "Previous";
+        prevButton.classList.add("pagination-button");
+        prevButton.addEventListener("click", () => displayPage(currentPage - 1, filters));
+        paginationContainer.prepend(prevButton);
     }
 }
 
