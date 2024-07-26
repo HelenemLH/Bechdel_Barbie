@@ -355,14 +355,15 @@ a {
 .dropdown-content {
     position: absolute; /* position absolue */
     background-color: white; /* couleur de fond blanche */
-    width: 380px; /* largeur */
+    width: 425px; /* largeur */
     max-height: 200px; /* hauteur maximale */
     overflow-y: auto; /* debordement en y defilant */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ombre */
     z-index: 1; /* niveau z */
-    margin-top: 5px; /* marge en haut */
+    margin-top: 0px; /* marge en haut */
     border-radius: 10px; /* coins arrondis */
     text-align: left; /* alignement a gauche */
+    margin-left: 90px; /* marge a gauche */
 }
 
 .dropdown-content .suggestion-item {
