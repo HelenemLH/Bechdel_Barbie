@@ -9,6 +9,17 @@ const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOT
 const API_URL = 'https://api.themoviedb.org/3';
 const CORS_PROXY = 'https://corsproxy.io/?';
 
+function decodeHtmlEntities(text) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+}
+
+function reformatTitle(title) {
+    const match = title.match(/^(.*?), (The|A|An)$/);
+    return match ? `${match[2]} ${match[1]}` : title;
+}
+
 async function fetchApiTmdb(imdbid) {
     const options = {
         method: 'GET',
@@ -33,20 +44,25 @@ async function fetchApi(imdbid, movieElement) {
 
     if (film) {
         const { title, year, rating } = film;
-        movieElement.querySelector(".title").textContent = title;
+        movieElement.querySelector(".title").textContent = reformatTitle(decodeHtmlEntities(title));
         movieElement.querySelector(".year").textContent = year;
         movieElement.querySelector(".rating").innerHTML = generateStars(rating);
     }
 }
 
 async function findMovie() {
-    const searchbartext = document.getElementById("searchbartext").value;
-    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${searchbartext}`;
+    const searchbartext = document.getElementById("searchbartext").value.trim();
+    if (searchbartext.length === 0) {
+        return;
+    }
+    
+    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(searchbartext)}`;
     const response = await fetch(url);
     const data = await response.json();
     const resultsContainer = document.getElementById("results");
     resultsContainer.innerHTML = "";
-    for (const movie of data) {
+
+    const fetchPromises = data.map(async movie => {
         const movieElement = createMovieElement();
         resultsContainer.appendChild(movieElement);
         await fetchApi(movie.imdbid, movieElement);
@@ -57,7 +73,9 @@ async function findMovie() {
         } else {
             movieElement.remove();
         }
-    }
+    });
+
+    await Promise.all(fetchPromises);
 }
 
 function createMovieElement() {
@@ -118,7 +136,7 @@ async function getRandomMovie() {
 
 let threeStarMovies = [];
 let currentPage = 1;
-const moviesPerPage = 5;
+const moviesPerPage = 4;
 
 async function fetchThreeStarMovies() {
     const allMovies = await fetchAllMovies();
@@ -135,7 +153,7 @@ function applyFilters(movies, filters) {
 
 function displayPage(page, filters = {}) {
     currentPage = page;
-    let filteredMovies = applyFilters(threeStarMovies, filters);
+    const filteredMovies = applyFilters(threeStarMovies, filters);
     const startIndex = (page - 1) * moviesPerPage;
     const endIndex = startIndex + moviesPerPage;
     const moviesToDisplay = filteredMovies.slice(startIndex, endIndex);
@@ -143,25 +161,26 @@ function displayPage(page, filters = {}) {
     const suggestionsContainer = document.getElementById("suggestions-list");
     suggestionsContainer.innerHTML = "";
 
-    for (const movie of moviesToDisplay) {
-        fetchApiTmdb(movie.imdbid).then(tmdbData => {
-            if (tmdbData) {
-                const suggestionElement = document.createElement("div");
-                suggestionElement.classList.add("suggestion-item");
-                suggestionElement.innerHTML = `
-                    <a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank" class="suggestion-link">
-                        <img src="${tmdbData.posterUrl}" alt="${movie.title} Poster" class="suggestion-poster"/>
-                        <div class="title">${movie.title}</div>
-                        <div class="year">${movie.year}</div>
-                        <div class="rating">${generateStars(movie.rating)}</div>
-                    </a>
-                `;
-                suggestionsContainer.appendChild(suggestionElement);
-            }
-        });
-    }
+    const fetchPromises = moviesToDisplay.map(async movie => {
+        const tmdbData = await fetchApiTmdb(movie.imdbid);
+        if (tmdbData) {
+            const suggestionElement = document.createElement("div");
+            suggestionElement.classList.add("suggestion-item");
+            suggestionElement.innerHTML = `
+                <a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank" class="suggestion-link">
+                    <img src="${tmdbData.posterUrl}" alt="${reformatTitle(decodeHtmlEntities(movie.title))} Poster" class="suggestion-poster"/>
+                    <div class="title">${reformatTitle(decodeHtmlEntities(movie.title))}</div>
+                    <div class="year">${movie.year}</div>
+                    <div class="rating">${generateStars(movie.rating)}</div>
+                </a>
+            `;
+            suggestionsContainer.appendChild(suggestionElement);
+        }
+    });
 
-    displayPagination(filteredMovies.length, filters);
+    Promise.all(fetchPromises).then(() => {
+        displayPagination(filteredMovies.length, filters);
+    });
 }
 
 function displayPagination(totalMovies, filters) {
@@ -209,6 +228,7 @@ document.getElementById("filter-form").addEventListener("submit", function(event
     displayPage(1, filters);
 });
 
+let debounceTimeout;
 async function showSuggestions() {
     const query = document.getElementById("searchbartext").value;
     if (query.length < 3) {
@@ -216,24 +236,27 @@ async function showSuggestions() {
         return;
     }
 
-    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${query}`;
-    const response = await fetch(url);
-    const data = await response.json();
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(async () => {
+        const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(query)}`;
+        const response = await fetch(url);
+        const data = await response.json();
 
-    const suggestionsDropdown = document.getElementById("suggestions-dropdown");
-    suggestionsDropdown.innerHTML = "";
+        const suggestionsDropdown = document.getElementById("suggestions-dropdown");
+        suggestionsDropdown.innerHTML = "";
 
-    data.slice(0, 5).forEach(movie => {
-        const suggestionItem = document.createElement("div");
-        suggestionItem.classList.add("suggestion-item");
-        suggestionItem.textContent = `${movie.title} (${movie.year})`;
-        suggestionItem.addEventListener("click", () => {
-            document.getElementById("searchbartext").value = movie.title;
-            suggestionsDropdown.innerHTML = "";
-            findMovie();
+        data.slice(0, 5).forEach(movie => {
+            const suggestionItem = document.createElement("div");
+            suggestionItem.classList.add("suggestion-item");
+            suggestionItem.textContent = `${reformatTitle(decodeHtmlEntities(movie.title))} (${movie.year})`;
+            suggestionItem.addEventListener("click", () => {
+                document.getElementById("searchbartext").value = reformatTitle(decodeHtmlEntities(movie.title));
+                suggestionsDropdown.innerHTML = "";
+                findMovie();
+            });
+            suggestionsDropdown.appendChild(suggestionItem);
         });
-        suggestionsDropdown.appendChild(suggestionItem);
-    });
+    }, 300);
 }
 
 fetchThreeStarMovies();
