@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    text-align: center;
+    max-width: 1600px; 
+    margin: auto;
+    padding: 3em; 
+    border-radius: 15px;
+    border: 2px solid #f0eff4;
+    background-color: #f0eff4;
+}
+
+#header {
+    font-family: 'Pacifico', cursive;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    color: white;
+    background-color: #ff69b4;
+    border-radius: 50px;
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+#header:hover {
+    background-color: #ff1493;
+}
+
+#content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+#description, #rating-explanation {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    line-height: 1.6;
+    position: relative;
+    overflow: hidden;
+    font-size: larger;
+}
+
+#description::before, #rating-explanation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #ff69b4, #ff1493);
+}
+
+#description:hover, #rating-explanation:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+#description h3, #rating-explanation h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff69b4;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ff69b4;
+    padding-bottom: 5px;
+}
+
+#description p, #rating-explanation p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #555;
+}
+
+#description p strong, #rating-explanation p strong {
+    font-weight: 700;
+}
+
+.gold-star {
+    color: #FFD700;
+    font-size: 50px;
+    margin-right: 0.2em;
+}
+
+@media (max-width: 768px) {
+    #content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #description, #rating-explanation {
+        flex: 1 1 100%;
+    }
+}
+
+#searchbar-container {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+#searchbar {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 28px;
+    background: blanchedalmond;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 0px;
+}
+
+#searchbar:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+input {
+    border-radius: 50px;
+    height: 45px;
+    width: 300px;
+    box-shadow: none;
+    color: #333;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    outline: none;
+    background: white;
+    padding: 0 1em;
+    margin-right: 0.5em;
+    transition: border 0.3s, background-color 0.3s;
+}
+
+input:focus {
+    border: 2px solid #ff69b4;
+    background-color: #f9f9f9;
+}
+
+input:hover {
+    border: 2px solid #ff69b4
+}
+
+button {
+    border-radius: 50px;
+    height: 45px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 0 1.5em;
+    margin-left: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+    background-color: #ff1493;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #ff1493;
+    transform: translateY(0);
+}
+
+#results-container {
+    margin-top: 20px;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+#filter-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+#filter-container input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s, background-color 0.3s;
+    width: 100px;
+}
+
+#filter-container input:focus {
+    border: 2px solid #ff69b4;
+    background-color: #f9f9f9;
+}
+
+#filter-container button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#filter-container button:hover {
+    background-color: #ff1493;
+}
+
+#suggestions-header {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff69b4;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#suggestions {
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    text-align: left;
+}
+
+#suggestions-list {
+    display: flex;
+    gap: 20px; 
+    justify-content: space-between;
+}
+
+.suggestion-item {
+    width: 220px;
+    flex: 0 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.suggestion-item .suggestion-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.suggestion-item .suggestion-poster {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.suggestion-item .title {
+    font-size: 1.2em;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+.suggestion-item .year, .suggestion-item .rating {
+    font-size: 1em;
+    color: #333;
+}
+
+.title {
+    font-size: 2.2em;
+    font-family: 'Pacifico', cursive;
+    margin-top: 1.5em;
+    color: #ff69b4;
+}
+
+.year {
+    font-size: 1.2em;
+    font-style: italic;
+    margin: 0.4em 0;
+}
+
+.rating {
+    font-size: 2em;
+    margin: 0.5em 0;
+    color: #ff69b4;
+}
+
+img {
+    border-radius: 20px;
+    border: 5px solid transparent;
+    background-color: transparent;
+    background-image: linear-gradient(white, white), linear-gradient(to right, #ff69b4, #ff1493);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.gold-star {
+    color: #FFD700;
+    font-size: 1.5rem;
+    margin-right: 0.2em;
+}
+
+a {
+    color: rgb(241, 51, 168);
+    font-weight: bolder;
+}
+
+.material-symbols-outlined {
+    color: rgb(136, 132, 132);
+    font-size: 1.9em;
+    margin-right: 0.5em;
+}
+
+#header a.no-style-link {
+    text-decoration: none;
+    color: white;
+    font-size: 60px;
+}
+
+.pagination-button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff69b4;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #ff1493;
+}
+
+.pagination-button.active {
+    background-color: #ff1493;
+    font-weight: bold;
+}
+
+.pagination-button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
