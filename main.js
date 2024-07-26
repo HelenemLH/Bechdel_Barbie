@@ -136,7 +136,7 @@ async function getRandomMovie() {
 
 let threeStarMovies = [];
 let currentPage = 1;
-const moviesPerPage = 5;
+const moviesPerPage = 4;
 
 async function fetchThreeStarMovies() {
     const allMovies = await fetchAllMovies();
@@ -189,7 +189,7 @@ function displayPagination(totalMovies, filters) {
     paginationContainer.innerHTML = "";
 
     const totalPages = Math.ceil(totalMovies / moviesPerPage);
-    const maxPagesToShow = 20;
+    const maxPagesToShow = 15; // Change to 15 buttons
     const startPage = Math.floor((currentPage - 1) / maxPagesToShow) * maxPagesToShow + 1;
     const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
 
