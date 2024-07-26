@@ -5,7 +5,7 @@ document.getElementById("searchbartext").addEventListener("keydown", function(ev
     }
 });
 
-const API_KEY = 'YOUR_API_KEY';  // Make sure to secure your API keys
+const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs';  
 const API_URL = 'https://api.themoviedb.org/3';
 const CORS_PROXY = 'https://corsproxy.io/?';
 
