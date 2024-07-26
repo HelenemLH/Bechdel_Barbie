@@ -142,15 +142,15 @@ body {
 
 input {
     border-radius: 50px;
-    height: 45px;
-    width: 300px;
+    height: 60px; 
+    width: 450px; 
     box-shadow: none;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1.5rem; 
     border: 1px solid #ccc;
     outline: none;
     background: white;
-    padding: 0 1em;
+    padding: 0 1.5em; 
     margin-right: 0.5em;
     transition: border 0.3s, background-color 0.3s;
 }
@@ -166,11 +166,11 @@ input:hover {
 
 button {
     border-radius: 50px;
-    height: 45px;
+    height: 60px; 
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0 1.5em;
+    padding: 0 2em; 
     margin-left: 0.5em;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s;
@@ -255,8 +255,8 @@ button:active {
 
 #suggestions-list {
     display: flex;
-    gap: 20px; 
-    justify-content: space-between;
+    gap: 30px;  
+    justify-content: center;
 }
 
 .suggestion-item {
@@ -341,8 +341,9 @@ a {
 
 .material-symbols-outlined {
     color: rgb(136, 132, 132);
-    font-size: 1.9em;
-    margin-right: 0.5em;
+    font-size: 2.5em;
+    margin-right: 1em;
+    margin-left: 20px;
 }
 
 #header a.no-style-link {
