@@ -211,8 +211,8 @@ button:active {
     font-size: 1rem;
     outline: none;
     transition: border 0.3s, background-color 0.3s;
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 45px;
 }
 
 #filter-container input:focus {
@@ -240,7 +240,7 @@ button:active {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
@@ -354,7 +354,7 @@ a {
 .dropdown-content {
     position: absolute;
     background-color: white;
-    width: calc(100% - 20px);
+    width: 380px;
     max-height: 200px;
     overflow-y: auto;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

@@ -5,7 +5,7 @@ document.getElementById("searchbartext").addEventListener("keydown", function(ev
     }
 });
 
-const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs';  
+const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iOiIxOTY3NjM1NzI3LjAyIiwic3ViIjoiNDAwZTg0OWEtZDY0Yy00OGEyLWIxMGQtYTgyOWI3ZmE2YjUwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.BgPpOq-1Id2Vgr8E5nZ_iXGXeJ-9kMSBRyxhjzWoqmc';
 const API_URL = 'https://api.themoviedb.org/3';
 const CORS_PROXY = 'https://corsproxy.io/?';
 
@@ -73,9 +73,9 @@ function createMovieElement() {
 }
 
 function generateStars(rating) {
-    const fullStar = '⭐'; 
-    const emptyStar = '☆'; 
-    const starColor = '#FFD700'; 
+    const fullStar = '⭐';
+    const emptyStar = '☆';
+    const starColor = '#FFD700';
     return `<span style="color: ${starColor};">${fullStar.repeat(rating) + emptyStar.repeat(3 - rating)}</span>`;
 }
 
