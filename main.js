@@ -92,14 +92,14 @@ function getRandomItem(array) {
 
 async function getRandomMovie() {
     const allMovies = await fetchAllMovies();
-    const threeStarMovies = allMovies.filter(movie => movie.rating === 3);
+    const filteredMovies = allMovies.filter(movie => movie.year >= 1995 && movie.year <= 2025);
 
-    if (threeStarMovies.length === 0) {
-        alert("No movies with a 3 star rating");
+    if (filteredMovies.length === 0) {
+        alert("No movies available for the selected years");
         return;
     }
 
-    const randomMovie = getRandomItem(threeStarMovies);
+    const randomMovie = getRandomItem(filteredMovies);
 
     const resultsContainer = document.getElementById("results");
     resultsContainer.innerHTML = "";
