@@ -10,39 +10,38 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
+        <header id="header">
             <a href="https://bechdeltest.com/" class="no-style-link">Bechdel Tracker</a>
-        </div>
-        <div id="content">
-            <div id="description">
+        </header>
+        <main id="content">
+            <section id="description">
                 <h3>Description</h3>
-                <p> Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel Test!
-                    <ul>
-                        <li>Two named women, like Barbie and her BFFs! 🌟</li>
-                        <li>They chat? Totally! 💬</li>
-                        <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
-                    </ul>
-                    It's a fun way to check how girl-powered your media is.<br/>
-                    Stay fabulous! 💅✨
-                </p>
-            </div>
-            <div id="rating-explanation">
+                <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel Test!
+                <ul>
+                    <li>Two named women, like Barbie and her BFFs! 🌟</li>
+                    <li>They chat? Totally! 💬</li>
+                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
+                </ul>
+                It's a fun way to check how girl-powered your media is.<br/>
+                Stay fabulous! 💅✨</p>
+            </section>
+            <section id="rating-explanation">
                 <h3>Bechdel Test Rating Explanation</h3>
-                <p><strong class="gold-star">☆☆☆</strong><strong>:</strong> Fails all Bechdel test criteria. </p>
-                <p><strong class="gold-star">⭐️☆☆</strong><strong>:</strong> Has two named women, but they don't talk. </p>
-                <p><strong class="gold-star">⭐️⭐️☆</strong><strong>:</strong> Two named women talk, but about men. </p>
-                <p><strong class="gold-star">⭐️⭐️⭐️</strong><strong>:</strong> Meets all Bechdel test criteria. </p>
-            </div>
-        </div>  
+                <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p>
+                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p>
+                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
+                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p>
+            </section>
+        </main>
         <div id="searchbar-container">
             <div id="searchbar">
-                <form>
+                <form id="search-form" onsubmit="findMovie(); return false;">
                     <div class="search">
                         <span class="material-symbols-outlined">search</span>
+                        <input id="searchbartext" type="text" placeholder="Find Your Flick 🎬">
+                        <button type="submit">Search</button>
                     </div>
                 </form>
-                <input id="searchbartext" type="text" placeholder="Find Your Flick 🎬">
-                <button id="button" onclick="findMovie()">Search</button>
                 <button id="random-button" onclick="getRandomMovie()">Random!</button>
             </div>
         </div>
