@@ -136,11 +136,12 @@ async function getRandomMovie() {
 
 let threeStarMovies = [];
 let currentPage = 1;
-const moviesPerPage = 4;
+const moviesPerPage = 5;
 
 async function fetchThreeStarMovies() {
     const allMovies = await fetchAllMovies();
     threeStarMovies = allMovies.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2024);
+    threeStarMovies.sort((a, b) => b.year - a.year); // Sort by year from most recent to less recent
     displayPage(1);
 }
 
