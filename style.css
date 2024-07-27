@@ -1,128 +1,128 @@
-/* importe les polices google */
+/* importer des polices de google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500&display=swap');
 
-/* definie les variables css pour les couleurs et tailles */
+/* definir des variables css pour les couleurs et tailles */
 :root {
     --primary-color: #ff69b4; /* couleur principale */
     --primary-dark-color: #ff1493; /* couleur principale foncée */
     --background-color: #f0eff4; /* couleur de fond */
     --text-color: #333; /* couleur du texte */
-    --accent-color: #FFD700; /* couleur des accents */
+    --accent-color: #FFD700; /* couleur d'accentuation */
     --searchbar-height: 55px; /* hauteur de la barre de recherche */
-    --searchbar-radius: 50px; /* rayon de la bordure de la barre de recherche */
+    --searchbar-radius: 50px; /* rayon de la barre de recherche */
     --searchbar-width: 1000px; /* largeur de la barre de recherche */
 }
 
-/* style global pour le corps de la page */
+/* styliser le body */
 body {
-    font-family: 'Quicksand', sans-serif; /* police de caractères */
+    font-family: 'Quicksand', sans-serif; /* police de caracteres */
     color: var(--text-color); /* couleur du texte */
     margin: 0; /* marge nulle */
     padding: 0; /* padding nul */
 }
 
-/* style pour le conteneur principal */
+/* styliser le conteneur principal */
 #wrapper {
     text-align: center; /* centrer le texte */
     max-width: 1600px; /* largeur maximale */
     margin: auto; /* marges automatiques */
-    padding: 3em; /*padding permet de définir différents écarts de remplissage sur les quatre côtés d'un élément*/
-    border-radius: 15px; /* défini les coins arrondis ou non */
+    padding: 3em; /* padding de 3em */
+    border-radius: 15px; /* coins arrondis */
     border: 2px solid var(--background-color); /* bordure */
     background-color: var(--background-color); /* couleur de fond */
 }
 
-/* style pour l'en-tête */
+/* styliser l'en-tête */
 #header {
-    font-family: 'Pacifico', cursive; /* police + cursive */
+    font-family: 'Pacifico', cursive; /* police de l'en-tête */
     font-weight: bold; /* texte en gras */
     text-align: center; /* centrer le texte */
-    font-size: 2.5rem; /* taille de police */
+    font-size: 2.5rem; /* taille du texte */
     letter-spacing: 0.1rem; /* espacement des lettres */
     color: white; /* couleur du texte */
     background-color: var(--primary-color); /* couleur de fond */
-    border-radius: 50px; /* rayon de la bordure */
-    padding: 1em; /* padding */
+    border-radius: 50px; /* coins arrondis */
+    padding: 1em; /* padding de 1em */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ombre */
     margin-bottom: 20px; /* marge en bas */
-    transition: background-color 0.3s; /* transition de couleur de fond */
+    transition: background-color 0.3s; /* transition pour la couleur de fond */
 }
 
-/* effet de survol pour l'en-tête */
+/* changer la couleur de fond au survol */
 #header:hover {
-    background-color: var(--primary-dark-color); /* changer la couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
-/* style pour le conteneur des boutons */
+/* styliser le conteneur des boutons */
 #buttons-container {
-    display: flex; /* affichage en flex */
-    justify-content: center; /* centrer les éléments */
-    gap: 1em; /* espace entre les éléments */
+    display: flex; /* utiliser flexbox */
+    justify-content: center; /* centrer les boutons */
+    gap: 1em; /* espace entre les boutons */
     margin-bottom: 1em; /* marge en bas */
 }
 
-/* style pour les boutons */
+/* styliser les boutons */
 #buttons-container button {
     padding: 0.5em 1em; /* padding */
     border: none; /* pas de bordure */
-    border-radius: 5px; /* rayon de la bordure */
+    border-radius: 5px; /* coins arrondis */
     background-color: var(--primary-color); /* couleur de fond */
     color: white; /* couleur du texte */
-    font-size: 1rem; /* taille de police */
-    cursor: pointer; /* curseur de pointeur */
-    transition: background-color 0.3s; /* transition de couleur de fond */
+    font-size: 1rem; /* taille du texte */
+    cursor: pointer; /* curseur pointeur */
+    transition: background-color 0.3s; /* transition pour la couleur de fond */
 }
 
-/* effet de survol pour les boutons */
+/* changer la couleur de fond au survol */
 #buttons-container button:hover {
-    background-color: var(--primary-dark-color); /* changer la couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
-/* style pour le contenu principal */
+/* styliser la section principale */
 #content {
-    display: flex; /* affichage en flex */
-    justify-content: space-between; /* espacer les éléments */
-    gap: 30px; /* espace entre les éléments */
+    display: flex; /* utiliser flexbox */
+    justify-content: space-between; /* espace entre les elements */
+    gap: 30px; /* espace entre les sections */
     margin-bottom: 30px; /* marge en bas */
 }
 
-/* style pour les sections de description et d'explication des notes */
+/* styliser les sections de description et d'explication des notes */
 #description, #rating-explanation {
     background-color: #fff; /* couleur de fond */
-    border-radius: 15px; /* rayon de la bordure */
+    border-radius: 15px; /* coins arrondis */
     padding: 25px; /* padding */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ombre */
     flex: 1; /* flex-grow */
     transition: transform 0.3s, box-shadow 0.3s; /* transitions */
-    font-family: 'Roboto', sans-serif; /* police de caractères */
+    font-family: 'Roboto', sans-serif; /* police */
     color: #444; /* couleur du texte */
     line-height: 1.6; /* hauteur de ligne */
     position: relative; /* position relative */
-    overflow: hidden; /* cacher le débordement */
-    font-size: larger; /* taille de police */
+    overflow: hidden; /* cacher le contenu debordant */
+    font-size: larger; /* taille du texte */
 }
 
-/* decoration pour les sections de description et d'explication des notes */
+/* ajouter une bordure colorée en haut des sections */
 #description::before, #rating-explanation::before {
     content: ""; /* contenu vide */
     position: absolute; /* position absolue */
     top: 0; /* en haut */
-    left: 0; /* à gauche */
-    width: 100%; /* largeur complète */
-    height: 5px; /* hauteur */
+    left: 0; /* a gauche */
+    width: 100%; /* largeur 100% */
+    height: 5px; /* hauteur 5px */
     background: linear-gradient(to right, var(--primary-color), var(--primary-dark-color)); /* dégradé */
 }
 
-/* effet de survol pour les sections de description et d'explication des notes */
+/* changer l'apparence au survol */
 #description:hover, #rating-explanation:hover {
-    transform: translateY(-5px); /* déplacement vers le haut */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* ombre plus grande */
+    transform: translateY(-5px); /* translation vers le haut */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* ombre */
 }
 
-/* style pour les titres des sections de description et d'explication des notes */
+/* styliser les titres des sections */
 #description h3, #rating-explanation h3 {
-    font-size: 2rem; /* taille de police */
+    font-size: 2rem; /* taille du texte */
     font-weight: 700; /* texte en gras */
     color: var(--primary-color); /* couleur du texte */
     margin-bottom: 15px; /* marge en bas */
@@ -130,422 +130,422 @@ body {
     padding-bottom: 5px; /* padding en bas */
 }
 
-/* style pour les paragraphes des sections de description et d'explication des notes */
+/* styliser les paragraphes des sections */
 #description p, #rating-explanation p {
-    font-size: 1rem; /* taille de police */
-    font-weight: 400; /* poids de police */
+    font-size: 1rem; /* taille du texte */
+    font-weight: 400; /* poids du texte */
     color: #555; /* couleur du texte */
 }
 
-/* style pour les éléments en gras dans les paragraphes */
+/* styliser les textes en gras */
 #description p strong, #rating-explanation p strong {
     font-weight: 700; /* texte en gras */
 }
 
-/* style pour les étoiles */
+/* styliser les etoiles en or */
 .gold-star {
-    color: var(--accent-color); /* couleur des étoiles */
-    font-size: 50px; /* taille de police */
-    margin-right: 0.2em; /* marge à droite */
+    color: var(--accent-color); /* couleur d'accentuation */
+    font-size: 50px; /* taille du texte */
+    margin-right: 0.2em; /* marge a droite */
 }
 
-/* style pour les petits écrans */
+/* styliser pour les petits ecrans */
 @media (max-width: 768px) {
     #content {
-        flex-direction: column; /* direction en colonne */
-        gap: 20px; /* espace entre les éléments */
+        flex-direction: column; /* direction colonne */
+        gap: 20px; /* espace entre les sections */
     }
 
     #description, #rating-explanation {
-        flex: 1 1 100%; /* flex-grow et flex-basis */
+        flex: 1 1 100%; /* flex-grow, flex-shrink, flex-basis */
     }
 }
 
-/* style pour le conteneur de la barre de recherche */
+/* styliser le conteneur de la barre de recherche */
 #searchbar-container {
-    display: flex; /* affichage en flex */
-    flex-direction: column; /* direction en colonne */
-    align-items: center; /* aligner les éléments au centre */
-    margin: 2em 0; /* marges en haut et en bas */
+    display: flex; /* utiliser flexbox */
+    flex-direction: column; /* direction colonne */
+    align-items: center; /* aligner au centre */
+    margin: 2em 0; /* marge en haut et en bas */
 }
 
-/* style pour la barre de recherche */
+/* styliser la barre de recherche */
 #searchbar {
-    display: flex; /* affichage en flex */
-    align-items: center; /* aligner les éléments au centre */
+    display: flex; /* utiliser flexbox */
+    align-items: center; /* aligner verticalement */
     padding: 1em; /* padding */
-    border-radius: var(--searchbar-radius); /* rayon de la bordure */
+    border-radius: var(--searchbar-radius); /* coins arrondis */
     background: blanchedalmond; /* couleur de fond */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ombre */
-    transition: box-shadow 0.3s ease-in-out; /* transition de l'ombre */
-    width: 100%; /* largeur complète */
+    transition: box-shadow 0.3s ease-in-out; /* transition pour l'ombre */
+    width: 100%; /* largeur 100% */
     max-width: var(--searchbar-width); /* largeur maximale */
 }
 
-/* effet de survol pour la barre de recherche */
+/* changer l'ombre au survol */
 #searchbar:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* ombre plus grande au survol */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* style pour le conteneur des éléments de recherche */
+/* styliser la div de recherche */
 .search {
-    display: flex; /* affichage en flex */
-    align-items: center; /* aligner les éléments au centre */
-    width: 100%; /* largeur complète */
+    display: flex; /* utiliser flexbox */
+    align-items: center; /* aligner verticalement */
+    width: 100%; /* largeur 100% */
 }
 
-/* style pour les boutons de recherche */
+/* styliser les boutons de recherche */
 .search-buttons {
-    display: flex; /* affichage en flex */
-    justify-content: center; /* centrer les éléments */
-    gap: 0.5em; /* espace entre les éléments */
+    display: flex; /* utiliser flexbox */
+    justify-content: center; /* centrer les boutons */
+    gap: 0.5em; /* espace entre les boutons */
     margin-top: 1em; /* marge en haut */
 }
 
-/* style pour les champs de saisie */
+/* styliser les champs de texte */
 input {
     width: 47rem; /* largeur */
-    border-radius: var(--searchbar-radius); /* rayon de la bordure */
+    border-radius: var(--searchbar-radius); /* coins arrondis */
     height: var(--searchbar-height); /* hauteur */
     box-shadow: none; /* pas d'ombre */
     color: var(--text-color); /* couleur du texte */
-    font-size: 1.2rem; /* taille de police */
+    font-size: 1.2rem; /* taille du texte */
     border: 1px solid #ccc; /* bordure */
     outline: none; /* pas de contour */
     background: white; /* couleur de fond */
-    padding: 0 1.5em; /* padding à gauche et à droite */
+    padding: 0 1.5em; /* padding interne */
     transition: border 0.3s, background-color 0.3s; /* transitions */
 }
 
-/* effet de focus pour les champs de saisie */
+/* changer la bordure et le fond quand le champ est en focus */
 input:focus {
-    border: 2px solid var(--primary-color); /* bordure au focus */
-    background-color: #f9f9f9; /* couleur de fond au focus */
+    border: 2px solid var(--primary-color); /* bordure */
+    background-color: #f9f9f9; /* couleur de fond */
 }
 
-/* effet de survol pour les champs de saisie */
+/* changer la bordure au survol */
 input:hover {
-    border: 2px solid var(--primary-color); /* bordure au survol */
+    border: 2px solid var(--primary-color);
 }
 
-/* style pour les boutons */
+/* styliser les boutons */
 button {
-    border-radius: var(--searchbar-radius); /* rayon de la bordure */
+    border-radius: var(--searchbar-radius); /* coins arrondis */
     height: var(--searchbar-height); /* hauteur */
     background-color: var(--primary-color); /* couleur de fond */
     color: white; /* couleur du texte */
     border: none; /* pas de bordure */
-    padding: 0 2em; /* padding à gauche et à droite */
-    cursor: pointer; /* curseur de pointeur */
+    padding: 0 2em; /* padding interne */
+    cursor: pointer; /* curseur pointeur */
     transition: background-color 0.3s ease-in-out, transform 0.2s; /* transitions */
 }
 
-/* effet de survol pour les boutons */
+/* changer la couleur de fond et la transformation au survol */
 button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
-    transform: translateY(-2px); /* déplacement vers le haut */
+    background-color: var(--primary-dark-color); /* couleur de fond */
+    transform: translateY(-2px); /* translation */
 }
 
-/* effet de clic pour les boutons */
+/* styliser le bouton quand il est cliqué */
 button:active {
-    background-color: var(--primary-dark-color); /* couleur de fond au clic */
-    transform: translateY(0); /* remettre en place */
+    background-color: var(--primary-dark-color); /* couleur de fond */
+    transform: translateY(0); /* translation */
 }
 
-/* style pour le conteneur des résultats */
+/* styliser le conteneur des résultats */
 #results-container {
     margin-top: 20px; /* marge en haut */
 }
 
-/* style pour les résultats */
+/* styliser les résultats */
 #results {
-    display: flex; /* affichage en flex */
+    display: flex; /* utiliser flexbox */
     flex-wrap: wrap; /* flex-wrap */
-    gap: 20px; /* espace entre les éléments */
-    justify-content: center; /* centrer les éléments */
+    gap: 20px; /* espace entre les résultats */
+    justify-content: center; /* centrer les résultats */
 }
 
-/* style pour le conteneur de filtre */
+/* styliser le conteneur des filtres */
 #filter-container {
-    display: flex; /* affichage en flex */
-    justify-content: flex-end; /* aligner les éléments à droite */
+    display: flex; /* utiliser flexbox */
+    justify-content: flex-end; /* aligner à droite */
     margin-top: 20px; /* marge en haut */
     gap: 10px; /* espace entre les éléments */
 }
 
-/* style pour les champs de saisie dans le conteneur de filtre */
+/* styliser les champs de texte des filtres */
 #filter-container input {
     padding: 10px; /* padding */
-    border-radius: 10px; /* rayon de la bordure */
+    border-radius: 10px; /* coins arrondis */
     border: 1px solid #ccc; /* bordure */
-    font-size: 1rem; /* taille de police */
+    font-size: 1rem; /* taille du texte */
     outline: none; /* pas de contour */
     transition: border 0.3s, background-color 0.3s; /* transitions */
     width: 150px; /* largeur */
     height: 45px; /* hauteur */
 }
 
-/* effet de focus pour les champs de saisie dans le conteneur de filtre */
+/* changer la bordure et le fond quand le champ est en focus */
 #filter-container input:focus {
-    border: 2px solid var(--primary-color); /* bordure au focus */
-    background-color: #f9f9f9; /* couleur de fond au focus */
+    border: 2px solid var(--primary-color); /* bordure */
+    background-color: #f9f9f9; /* couleur de fond */
 }
 
-/* style pour les boutons dans le conteneur de filtre */
+/* styliser les boutons des filtres */
 #filter-container button {
-    padding: 10px 20px; /* padding */
-    border-radius: 10px; /* rayon de la bordure */
+    padding: 10px 20px; /* padding interne */
+    border-radius: 10px; /* coins arrondis */
     background-color: var(--primary-color); /* couleur de fond */
     color: white; /* couleur du texte */
     border: none; /* pas de bordure */
-    cursor: pointer; /* curseur de pointeur */
-    transition: background-color 0.3s ease-in-out; /* transition de couleur de fond */
+    cursor: pointer; /* curseur pointeur */
+    transition: background-color 0.3s ease-in-out; /* transition */
     height: 45px; /* hauteur */
 }
 
-/* effet de survol pour les boutons dans le conteneur de filtre */
+/* changer la couleur de fond au survol */
 #filter-container button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
-/* style pour le titre des suggestions */
+/* styliser le titre des suggestions */
 #suggestions-header {
-    text-align: left; /* aligner le texte à gauche */
-    font-size: 1.5rem; /* taille de police */
+    text-align: left; /* aligner à gauche */
+    font-size: 1.5rem; /* taille du texte */
     font-weight: 700; /* texte en gras */
     color: var(--primary-color); /* couleur du texte */
     margin-top: 40px; /* marge en haut */
     margin-bottom: 10px; /* marge en bas */
 }
 
-/* style pour le conteneur des suggestions */
+/* styliser le conteneur des suggestions */
 #suggestions {
     padding: 15px; /* padding */
-    border-radius: 15px; /* rayon de la bordure */
-    overflow: hidden; /* cacher le débordement */
-    white-space: nowrap; /* empêcher le retour à la ligne */
+    border-radius: 15px; /* coins arrondis */
+    overflow: hidden; /* cacher le contenu debordant */
+    white-space: nowrap; /* pas de retour à la ligne */
     position: relative; /* position relative */
-    text-align: left; /* aligner le texte à gauche */
+    text-align: left; /* aligner à gauche */
 }
 
-/* style pour la liste des suggestions */
+/* styliser la liste des suggestions */
 #suggestions-list {
-    display: flex; /* affichage en flex */
+    display: flex; /* utiliser flexbox */
     gap: 30px; /* espace entre les éléments */
     justify-content: center; /* centrer les éléments */
 }
 
-/* style pour les éléments de suggestion */
+/* styliser les éléments de suggestion */
 .suggestion-item {
     width: 220px; /* largeur */
-    flex: 0 0 auto; /* ne pas agrandir ou réduire */
+    flex: 0 0 auto; /* flex-grow, flex-shrink, flex-basis */
     padding: 10px; /* padding */
-    border-radius: 10px; /* rayon de la bordure */
+    border-radius: 10px; /* coins arrondis */
     transition: transform 0.3s, box-shadow 0.3s; /* transitions */
     text-align: center; /* centrer le texte */
 }
 
-/* style pour les liens dans les éléments de suggestion */
+/* styliser les liens des suggestions */
 .suggestion-item .suggestion-link {
     text-decoration: none; /* pas de décoration de texte */
-    color: inherit; /* couleur héritée */
-    display: block; /* affichage en block */
+    color: inherit; /* heriter la couleur du texte */
+    display: block; /* afficher en bloc */
 }
 
-/* style pour les images dans les éléments de suggestion */
+/* styliser les posters des suggestions */
 .suggestion-item .suggestion-poster {
-    width: 100%; /* largeur complète */
-    border-radius: 10px; /* rayon de la bordure */
+    width: 100%; /* largeur 100% */
+    border-radius: 10px; /* coins arrondis */
     margin-bottom: 10px; /* marge en bas */
 }
 
-/* style pour le titre dans les éléments de suggestion */
+/* styliser les titres des suggestions */
 .suggestion-item .title {
-    font-size: 1.2em; /* taille de police */
+    font-size: 1.2em; /* taille du texte */
     color: var(--primary-color); /* couleur du texte */
     font-weight: bold; /* texte en gras */
 }
 
-/* style pour l'année et la note dans les éléments de suggestion */
+/* styliser les années et les notes des suggestions */
 .suggestion-item .year, .suggestion-item .rating {
-    font-size: 1em; /* taille de police */
+    font-size: 1em; /* taille du texte */
     color: var(--text-color); /* couleur du texte */
 }
 
-/* style pour les titres */
+/* styliser les titres des résultats */
 .title {
-    font-size: 2.2em; /* taille de police */
-    font-family: 'Pacifico', cursive; /* police cursive */
+    font-size: 2.2em; /* taille du texte */
+    font-family: 'Pacifico', cursive; /* police */
     margin-top: 1.5em; /* marge en haut */
     color: var(--primary-color); /* couleur du texte */
 }
 
-/* style pour les années */
+/* styliser les années des résultats */
 .year {
-    font-size: 1.2em; /* taille de police */
-    font-style: italic; /* style italique */
+    font-size: 1.2em; /* taille du texte */
+    font-style: italic; /* texte en italique */
     margin: 0.4em 0; /* marge en haut et en bas */
 }
 
-/* style pour les notes */
+/* styliser les notes des résultats */
 .rating {
-    font-size: 2em; /* taille de police */
+    font-size: 2em; /* taille du texte */
     margin: 0.5em 0; /* marge en haut et en bas */
     color: var(--primary-color); /* couleur du texte */
 }
 
-/* style pour les images */
+/* styliser les images */
 img {
-    border-radius: 20px; /* rayon de la bordure */
+    border-radius: 20px; /* coins arrondis */
     border: 5px solid transparent; /* bordure transparente */
     background-color: transparent; /* couleur de fond transparente */
     background-image: linear-gradient(white, white), linear-gradient(to right, var(--primary-color), var(--primary-dark-color)); /* dégradé */
     background-origin: border-box; /* origine du fond */
-    background-clip: content-box, border-box; /* clip du fond */
+    background-clip: content-box, border-box; /* découpe du fond */
     padding: 10px; /* padding */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* ombre */
     transition: transform 0.3s, box-shadow 0.3s; /* transitions */
     margin-bottom: 20px; /* marge en bas */
 }
 
-/* effet de survol pour les images */
+/* transformer et ajouter une ombre au survol */
 img:hover {
     transform: scale(1.05); /* agrandir */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* ombre plus grande */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* ombre */
 }
 
-/* style pour les étoiles en or */
+/* styliser les étoiles en or */
 .gold-star {
-    color: var(--accent-color); /* couleur des étoiles */
-    font-size: 1.5rem; /* taille de police */
+    color: var(--accent-color); /* couleur d'accentuation */
+    font-size: 1.5rem; /* taille du texte */
     margin-right: 0.2em; /* marge à droite */
 }
 
-/* style pour les liens */
+/* styliser les liens */
 a {
     color: rgb(241, 51, 168); /* couleur du texte */
     font-weight: bolder; /* texte en gras */
 }
 
-/* style pour les icônes material */
+/* styliser les icônes material */
 .material-symbols-outlined {
-    color: rgb(136, 132, 132); /* couleur des icônes */
+    color: rgb(136, 132, 132); /* couleur du texte */
     margin-right: 1em; /* marge à droite */
     margin-left: 20px; /* marge à gauche */
-    font-size: 2.5rem; /* taille de police */
+    font-size: 2.5rem; /* taille du texte */
 }
 
-/* style pour les liens sans style */
+/* styliser les liens dans l'en-tête */
 #header a.no-style-link {
     text-decoration: none; /* pas de décoration de texte */
     color: white; /* couleur du texte */
-    font-size: 60px; /* taille de police */
+    font-size: 60px; /* taille du texte */
 }
 
-/* style pour le contenu déroulant des suggestions */
+/* styliser le menu déroulant des suggestions */
 .dropdown-content {
     position: absolute; /* position absolue */
     background-color: white; /* couleur de fond */
-    width: 100%; /* largeur complète */
+    width: 100%; /* largeur 100% */
     max-height: 200px; /* hauteur maximale */
     overflow-y: auto; /* défilement vertical */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ombre */
-    z-index: 1; /* niveau de pile */
+    z-index: 1; /* index z */
     margin-top: 5px; /* marge en haut */
-    border-radius: 10px; /* rayon de la bordure */
-    text-align: left; /* aligner le texte à gauche */
+    border-radius: 10px; /* coins arrondis */
+    text-align: left; /* aligner à gauche */
 }
 
-/* style pour les éléments de suggestion dans le contenu déroulant */
+/* styliser les éléments de suggestion dans le menu déroulant */
 .dropdown-content .suggestion-item {
     padding: 10px; /* padding */
-    cursor: pointer; /* curseur de pointeur */
+    cursor: pointer; /* curseur pointeur */
     border-bottom: 1px solid #ddd; /* bordure en bas */
 }
 
-/* enlever la bordure en bas pour le dernier élément */
+/* pas de bordure en bas pour le dernier élément */
 .dropdown-content .suggestion-item:last-child {
-    border-bottom: none; /* pas de bordure en bas */
+    border-bottom: none;
 }
 
-/* effet de survol pour les éléments de suggestion dans le contenu déroulant */
+/* changer la couleur de fond au survol */
 .dropdown-content .suggestion-item:hover {
-    background-color: #f1f1f1; /* couleur de fond au survol */
+    background-color: #f1f1f1;
 }
 
-/* style pour les boutons de pagination */
+/* styliser les boutons de pagination */
 .pagination-button {
-    margin: 0 5px; /* marges à gauche et à droite */
-    padding: 10px 20px; /* padding */
+    margin: 0 5px; /* marge à gauche et à droite */
+    padding: 10px 20px; /* padding interne */
     border: none; /* pas de bordure */
     background-color: var(--primary-color); /* couleur de fond */
     color: white; /* couleur du texte */
-    cursor: pointer; /* curseur de pointeur */
-    border-radius: 5px; /* rayon de la bordure */
-    transition: background-color 0.3s ease; /* transition de couleur de fond */
+    cursor: pointer; /* curseur pointeur */
+    border-radius: 5px; /* coins arrondis */
+    transition: background-color 0.3s ease; /* transition */
 }
 
-/* effet de survol pour les boutons de pagination */
+/* changer la couleur de fond au survol */
 .pagination-button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
-/* style pour le bouton de pagination actif */
+/* styliser le bouton actif */
 .pagination-button.active {
     background-color: var(--primary-dark-color); /* couleur de fond */
     font-weight: bold; /* texte en gras */
 }
 
-/* style pour les boutons de pagination désactivés */
+/* styliser le bouton désactivé */
 .pagination-button:disabled {
     background-color: #e0e0e0; /* couleur de fond */
     cursor: not-allowed; /* curseur interdit */
 }
 
-/* style pour le conteneur de pagination */
+/* styliser le conteneur de la pagination */
 #pagination {
-    display: flex; /* affichage en flex */
-    justify-content: center; /* centrer les éléments */
+    display: flex; /* utiliser flexbox */
+    justify-content: center; /* centrer les boutons */
     margin-top: 20px; /* marge en haut */
 }
 
-/* style pour les fenêtres pop-up */
+/* styliser les fenêtres pop-up */
 .modal {
-    display: none; /* ne pas afficher */
+    display: none; /* cacher par défaut */
     position: fixed; /* position fixe */
-    z-index: 1; /* niveau de pile */
+    z-index: 1; /* index z */
     left: 0; /* à gauche */
     top: 0; /* en haut */
-    width: 100%; /* largeur complète */
-    height: 100%; /* hauteur complète */
-    overflow: auto; /* défilement automatique */
+    width: 100%; /* largeur 100% */
+    height: 100%; /* hauteur 100% */
+    overflow: auto; /* défilement */
     background-color: rgb(0,0,0); /* couleur de fond */
-    background-color: rgba(0,0,0,0.4); /* couleur de fond avec opacité */
+    background-color: rgba(0,0,0,0.4); /* couleur de fond avec transparence */
 }
 
-/* style pour le contenu des fenêtres pop-up */
+/* styliser le contenu des fenêtres pop-up */
 .modal-content {
     background-color: #fefefe; /* couleur de fond */
-    margin: 15% auto; /* marges en haut et en bas automatiques */
+    margin: 15% auto; /* marges automatiques */
     padding: 20px; /* padding */
     border: 1px solid #888; /* bordure */
-    width: 90%; /* largeur */
+    width: 90%; /* largeur 90% */
     max-width: 500px; /* largeur maximale */
-    border-radius: 10px; /* rayon de la bordure */
+    border-radius: 10px; /* coins arrondis */
 }
 
-/* style pour le bouton de fermeture des fenêtres pop-up */
+/* styliser le bouton de fermeture */
 .close {
     color: #aaa; /* couleur du texte */
     float: right; /* flotter à droite */
-    font-size: 28px; /* taille de police */
+    font-size: 28px; /* taille du texte */
     font-weight: bold; /* texte en gras */
 }
 
-/* effet de survol pour le bouton de fermeture des fenêtres pop-up */
+/* changer la couleur et le style du curseur au survol */
 .close:hover,
 .close:focus {
     color: black; /* couleur du texte */
     text-decoration: none; /* pas de décoration de texte */
-    cursor: pointer; /* curseur de pointeur */
+    cursor: pointer; /* curseur pointeur */
 }
