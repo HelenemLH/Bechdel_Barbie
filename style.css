@@ -7,6 +7,9 @@
     --background-color: #f0eff4;
     --text-color: #333;
     --accent-color: #FFD700;
+    --searchbar-height: 55px;
+    --searchbar-radius: 50px;
+    --searchbar-width: 1000px;
 }
 
 body {
@@ -45,14 +48,14 @@ body {
     background-color: var(--primary-dark-color);
 }
 
-#button-container {
+#buttons-container {
     display: flex;
     justify-content: center;
     gap: 1em;
     margin-bottom: 1em;
 }
 
-#button-container button {
+#buttons-container button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 5px;
@@ -63,7 +66,7 @@ body {
     transition: background-color 0.3s;
 }
 
-#button-container button:hover {
+#buttons-container button:hover {
     background-color: var(--primary-dark-color);
 }
 
@@ -142,30 +145,44 @@ body {
 
 #searchbar-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 2em 0;
 }
 
 #searchbar {
     display: flex;
     align-items: center;
-    padding: 0.5em;
-    border-radius: 28px;
+    padding: 1em;
+    border-radius: var(--searchbar-radius);
     background: blanchedalmond;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
-    margin-bottom: 0px;
-    position: relative;
+    width: 100%;
+    max-width: var(--searchbar-width);
 }
 
 #searchbar:hover {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
+.search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    margin-top: 1em;
+}
+
 input {
-    border-radius: 50px;
-    height: 55px;
-    width: 400px;
+    width: 47rem;
+    border-radius: var(--searchbar-radius);
+    height: var(--searchbar-height);
     box-shadow: none;
     color: var(--text-color);
     font-size: 1.2rem;
@@ -173,7 +190,6 @@ input {
     outline: none;
     background: white;
     padding: 0 1.5em;
-    margin-right: 0.5em;
     transition: border 0.3s, background-color 0.3s;
 }
 
@@ -187,13 +203,12 @@ input:hover {
 }
 
 button {
-    border-radius: 50px;
-    height: 55px;
+    border-radius: var(--searchbar-radius);
+    height: var(--searchbar-height);
     background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 0 2em;
-    margin-left: 0.5em;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
@@ -377,7 +392,7 @@ a {
 .dropdown-content {
     position: absolute;
     background-color: white;
-    width: 380px;
+    width: 100%;
     max-height: 200px;
     overflow-y: auto;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -434,37 +449,38 @@ a {
 
 /* pop-up window styles */
 .modal {
-    display: none; /* caché par défaut */
-    position: fixed; /* position fixe */
-    z-index: 1; /* reste au-dessus */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* pleine largeur */
-    height: 100%; /* pleine hauteur */
-    overflow: auto; /* scroll si nécessaire */
-    background-color: rgb(0,0,0); /* couleur de fond */
-    background-color: rgba(0,0,0,0.4); /* couleur de fond avec opacité */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
-    background-color: #fefefe; /* couleur de fond du contenu */
-    margin: 15% auto; /* centré verticalement */
-    padding: 20px; /* padding */
-    border: 1px solid #888; /* bordure */
-    width: 15%; /* largeur */
-    border-radius: 10px; /* coins arrondis */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
 }
 
 .close {
-    color: #aaa; /* couleur */
-    float: right; /* aligné à droite */
-    font-size: 28px; /* taille de police */
-    font-weight: bold; /* gras */
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black; /* couleur au survol */
-    text-decoration: none; /* pas de soulignement */
-    cursor: pointer; /* curseur */
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

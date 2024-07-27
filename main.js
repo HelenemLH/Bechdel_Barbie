@@ -141,7 +141,7 @@ const moviesPerPage = 4;
 async function fetchThreeStarMovies() {
     const allMovies = await fetchAllMovies();
     threeStarMovies = allMovies.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2024);
-    threeStarMovies.sort((a, b) => b.year - a.year); // Sort by year from most recent to less recent
+    threeStarMovies.sort((a, b) => b.year - a.year);
     displayPage(1);
 }
 
@@ -189,7 +189,7 @@ function displayPagination(totalMovies, filters) {
     paginationContainer.innerHTML = "";
 
     const totalPages = Math.ceil(totalMovies / moviesPerPage);
-    const maxPagesToShow = 15;  // Show only 15 pages
+    const maxPagesToShow = 15;
     const startPage = Math.max(Math.min(currentPage - Math.floor(maxPagesToShow / 2), totalPages - maxPagesToShow + 1), 1);
     const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
 
@@ -261,7 +261,6 @@ async function showSuggestions() {
 
 fetchThreeStarMovies();
 
-// Gestion des pop-ups
 document.getElementById('description-button').onclick = function() {
     document.getElementById('popup-description').style.display = 'block';
 };

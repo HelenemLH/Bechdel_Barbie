@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"> <!-- définit le codage des caractères pour le document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- assure que le site est réactif sur les appareils mobiles -->
-    <link rel="stylesheet" href="./style.css"> <!-- lien vers le fichier css externe pour le style -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> <!-- importe une police google pour les icônes -->
-    <title>💖 My Bechdel Tracker 💖</title> <!-- définit le titre de la page web -->
-    <script src="./main.js" defer></script> <!-- lien vers le fichier js externe, diffère l'exécution jusqu'à ce que le html soit chargé -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>💖 My Bechdel Tracker 💖</title>
+    <script src="./main.js" defer></script>
 </head>
 <body>
-    <div id="wrapper"> <!-- div enveloppe pour tout le contenu, centré -->
+    <div id="wrapper">
         <header id="header">
-            <a href="https://bechdeltest.com/" class="no-style-link">Bechdel Tracker</a> <!-- en-tête avec un lien vers le site Bechdel Test -->
+            <a href="https://bechdeltest.com/" class="no-style-link">Bechdel Tracker</a>
         </header>
-        <div id="buttons-container"> <!-- conteneur pour les boutons -->
-            <button id="description-button">Description</button> <!-- bouton pour afficher la description -->
-            <button id="rating-button">Rating Explanation</button> <!-- bouton pour afficher l'explication des évaluations -->
+        <div id="buttons-container">
+            <button id="description-button">Description</button>
+            <button id="rating-button">Rating Explanation</button>
         </div>
-        <main id="content"> <!-- zone de contenu principal -->
-            <section id="description" style="display: none;"> <!-- section de description, cachée par défaut -->
-                <h3>Description</h3> <!-- en-tête pour la section description -->
+        <main id="content">
+            <section id="description" style="display: none;">
+                <h3>Description</h3>
                 <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel Test!
                 <ul>
-                    <li>Two named women, like Barbie and her BFFs! 🌟</li> <!-- premier critère du test de Bechdel -->
-                    <li>They chat? Totally! 💬</li> <!-- deuxième critère du test de Bechdel -->
-                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li> <!-- troisième critère du test de Bechdel -->
+                    <li>Two named women, like Barbie and her BFFs! 🌟</li>
+                    <li>They chat? Totally! 💬</li>
+                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
                 </ul>
                 It's a fun way to check how girl-powered your media is.<br/>
                 Stay fabulous! 💅✨</p>
             </section>
-            <section id="rating-explanation" style="display: none;"> <!-- section d'explication des évaluations, cachée par défaut -->
-                <h3>Bechdel Test Rating Explanation</h3> <!-- en-tête pour la section d'explication des évaluations -->
-                <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p> <!-- explication pour 0 étoile -->
-                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> <!-- explication pour 1 étoile -->
-                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p> <!-- explication pour 2 étoiles -->
-                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p> <!-- explication pour 3 étoiles -->
+            <section id="rating-explanation" style="display: none;">
+                <h3>Bechdel Test Rating Explanation</h3>
+                <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p>
+                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p>
+                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
+                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p>
             </section>
         </main>
         <div id="searchbar-container">
             <div id="searchbar">
-                <form id="search-form" onsubmit="findMovie(); return false;"> <!-- formulaire de recherche, empêche l'envoi par défaut -->
+                <form id="search-form" onsubmit="findMovie(); return false;">
                     <div class="search">
-                        <span class="material-symbols-outlined">search</span> <!-- icône de recherche -->
-                        <input id="searchbartext" type="text" placeholder="Find Your Flick 🎬" oninput="showSuggestions()"> <!-- champ de saisie pour la recherche -->
-                        <button type="submit">Search</button> <!-- bouton de soumission de la recherche -->
-                        <div id="suggestions-dropdown" class="dropdown-content"></div> <!-- zone pour afficher les suggestions de recherche -->
+                        <span class="material-symbols-outlined">search</span>
+                        <input id="searchbartext" type="text" placeholder="Find Your Flick 🎬" oninput="showSuggestions()">
                     </div>
+                    <div id="suggestions-dropdown" class="dropdown-content"></div>
                 </form>
-                <button id="random-button" onclick="getRandomMovie()">Random!</button> <!-- bouton pour obtenir un film aléatoire -->
+            </div>
+            <div class="search-buttons">
+                <button type="submit" form="search-form">Search</button>
+                <button id="random-button" type="button" onclick="getRandomMovie()">Random!</button>
             </div>
         </div>
         <div id="results-container">
-            <div id="results"></div> <!-- conteneur pour afficher les résultats de la recherche -->
+            <div id="results"></div>
         </div>
         <div id="filter-container">
-            <form id="filter-form"> <!-- formulaire de filtre -->
-                <input type="number" id="year" placeholder="Year" min="1995" max="2024"> <!-- champ de saisie pour l'année -->
-                <button type="submit">Filter</button> <!-- bouton pour appliquer le filtre -->
+            <form id="filter-form">
+                <input type="number" id="year" placeholder="Year" min="1995" max="2024">
+                <button type="submit">Filter</button>
             </form>
         </div>
-        <h3 id="suggestions-header">3-Star Movie Suggestions</h3> <!-- en-tête pour les suggestions de films 3 étoiles -->
+        <h3 id="suggestions-header">3-Star Movie Suggestions</h3>
         <div id="suggestions">
-            <div id="suggestions-list" class="scrolling-list"></div> <!-- conteneur pour la liste des suggestions -->
-            <div id="pagination"></div> <!-- conteneur pour la pagination -->
+            <div id="suggestions-list" class="scrolling-list"></div>
+            <div id="pagination"></div>
         </div>
     </div>
-
-    <!-- Pop-up pour la description -->
+    
     <div id="popup-description" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -81,8 +82,7 @@
             Stay fabulous! 💅✨</p>
         </div>
     </div>
-
-    <!-- Pop-up pour l'explication des évaluations -->
+    
     <div id="popup-rating" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
