@@ -2,411 +2,469 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500&display=swap');
 
 :root {
-    --primary-color: #ff69b4; /* definit la couleur principale */
-    --primary-dark-color: #ff1493; /* definit une couleur principale plus foncee */
-    --background-color: #f0eff4; /* couleur de fond */
-    --text-color: #333; /* couleur du texte */
-    --accent-color: #FFD700; /* couleur d'accentuation */
+    --primary-color: #ff69b4;
+    --primary-dark-color: #ff1493;
+    --background-color: #f0eff4;
+    --text-color: #333;
+    --accent-color: #FFD700;
 }
 
 body {
-    font-family: 'Quicksand', sans-serif; /* police principale pour le corps */
-    color: var(--text-color); /* couleur du texte */
-    margin: 0; /* marge nulle */
-    padding: 0; /* padding nul */
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
 }
 
 #wrapper {
-    text-align: center; /* texte centre */
-    max-width: 1600px; /* largeur maximale */
-    margin: auto; /* marge automatique pour centrer */
-    padding: 3em; /* padding de 3em */
-    border-radius: 15px; /* coins arrondis */
-    border: 2px solid var(--background-color); /* bordure de 2px */
-    background-color: var(--background-color); /* couleur de fond */
+    text-align: center;
+    max-width: 1600px;
+    margin: auto;
+    padding: 3em;
+    border-radius: 15px;
+    border: 2px solid var(--background-color);
+    background-color: var(--background-color);
 }
 
 #header {
-    font-family: 'Pacifico', cursive; /* police pour l'en-tete */
-    font-weight: bold; /* texte en gras */
-    text-align: center; /* texte centre */
-    font-size: 2.5rem; /* taille de police */
-    letter-spacing: 0.1rem; /* espacement des lettres */
-    color: white; /* couleur du texte */
-    background-color: var(--primary-color); /* couleur de fond */
-    border-radius: 50px; /* coins arrondis */
-    padding: 1em; /* padding de 1em */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ombre */
-    margin-bottom: 20px; /* marge en bas */
-    transition: background-color 0.3s; /* transition pour la couleur de fond */
+    font-family: 'Pacifico', cursive;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
 }
 
 #header:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
+    background-color: var(--primary-dark-color);
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+#button-container button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#button-container button:hover {
+    background-color: var(--primary-dark-color);
 }
 
 #content {
-    display: flex; /* affichage en flexbox */
-    justify-content: space-between; /* espace entre les elements */
-    gap: 30px; /* espace entre les elements */
-    margin-bottom: 30px; /* marge en bas */
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 #description, #rating-explanation {
-    background-color: #fff; /* couleur de fond blanche */
-    border-radius: 15px; /* coins arrondis */
-    padding: 25px; /* padding de 25px */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ombre */
-    flex: 1; /* flex-grow a 1 */
-    transition: transform 0.3s, box-shadow 0.3s; /* transition pour la transformation et l'ombre */
-    font-family: 'Roboto', sans-serif; /* police */
-    color: #444; /* couleur du texte */
-    line-height: 1.6; /* hauteur de ligne */
-    position: relative; /* position relative */
-    overflow: hidden; /* debordement cache */
-    font-size: larger; /* taille de police plus grande */
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    line-height: 1.6;
+    position: relative;
+    overflow: hidden;
+    font-size: larger;
 }
 
 #description::before, #rating-explanation::before {
-    content: ""; /* contenu vide pour le pseudo-element */
-    position: absolute; /* position absolue */
-    top: 0; /* en haut */
-    left: 0; /* a gauche */
-    width: 100%; /* largeur a 100% */
-    height: 5px; /* hauteur de 5px */
-    background: linear-gradient(to right, var(--primary-color), var(--primary-dark-color)); /* degrade de couleur */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-dark-color));
 }
 
 #description:hover, #rating-explanation:hover {
-    transform: translateY(-5px); /* translation vers le haut de 5px au survol */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* ombre plus grande au survol */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 #description h3, #rating-explanation h3 {
-    font-size: 2rem; /* taille de police */
-    font-weight: 700; /* texte en gras */
-    color: var(--primary-color); /* couleur du texte */
-    margin-bottom: 15px; /* marge en bas */
-    border-bottom: 2px solid var(--primary-color); /* bordure en bas */
-    padding-bottom: 5px; /* padding en bas */
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
 }
 
 #description p, #rating-explanation p {
-    font-size: 1rem; /* taille de police */
-    font-weight: 400; /* texte normal */
-    color: #555; /* couleur du texte */
+    font-size: 1rem;
+    font-weight: 400;
+    color: #555;
 }
 
 #description p strong, #rating-explanation p strong {
-    font-weight: 700; /* texte en gras */
+    font-weight: 700;
 }
 
 .gold-star {
-    color: var(--accent-color); /* couleur d'accentuation */
-    font-size: 50px; /* taille de police */
-    margin-right: 0.2em; /* marge a droite */
+    color: var(--accent-color);
+    font-size: 50px;
+    margin-right: 0.2em;
 }
 
 @media (max-width: 768px) {
     #content {
-        flex-direction: column; /* affichage en colonne */
-        gap: 20px; /* espace entre les elements */
+        flex-direction: column;
+        gap: 20px;
     }
 
     #description, #rating-explanation {
-        flex: 1 1 100%; /* flex-grow et flex-basis a 100% */
+        flex: 1 1 100%;
     }
 }
 
 #searchbar-container {
-    display: flex; /* affichage en flexbox */
-    justify-content: center; /* centrer horizontalement */
-    margin: 2em 0; /* marge verticale */
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
 }
 
 #searchbar {
-    display: flex; /* affichage en flexbox */
-    align-items: center; /* alignement vertical */
-    padding: 0.5em; /* padding */
-    border-radius: 28px; /* coins arrondis */
-    background: blanchedalmond; /* couleur de fond */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ombre */
-    transition: box-shadow 0.3s ease-in-out; /* transition pour l'ombre */
-    margin-bottom: 0px; /* marge en bas */
-    position: relative; /* position relative */
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 28px;
+    background: blanchedalmond;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 0px;
+    position: relative;
 }
 
 #searchbar:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* ombre plus grande au survol */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 input {
-    border-radius: 50px; /* coins arrondis */
-    height: 55px; /* hauteur */
-    width: 400px; /* largeur */
-    box-shadow: none; /* pas d'ombre */
-    color: var(--text-color); /* couleur du texte */
-    font-size: 1.2rem; /* taille de police */
-    border: 1px solid #ccc; /* bordure */
-    outline: none; /* pas de contour */
-    background: white; /* couleur de fond */
-    padding: 0 1.5em; /* padding interne */
-    margin-right: 0.5em; /* marge a droite */
-    transition: border 0.3s, background-color 0.3s; /* transition pour la bordure et la couleur de fond */
+    border-radius: 50px;
+    height: 55px;
+    width: 400px;
+    box-shadow: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    outline: none;
+    background: white;
+    padding: 0 1.5em;
+    margin-right: 0.5em;
+    transition: border 0.3s, background-color 0.3s;
 }
 
 input:focus {
-    border: 2px solid var(--primary-color); /* bordure au focus */
-    background-color: #f9f9f9; /* couleur de fond au focus */
+    border: 2px solid var(--primary-color);
+    background-color: #f9f9f9;
 }
 
 input:hover {
-    border: 2px solid var(--primary-color); /* bordure au survol */
+    border: 2px solid var(--primary-color);
 }
 
 button {
-    border-radius: 50px; /* coins arrondis */
-    height: 55px; /* hauteur */
-    background-color: var(--primary-color); /* couleur de fond */
-    color: white; /* couleur du texte */
-    border: none; /* pas de bordure */
-    padding: 0 2em; /* padding interne */
-    margin-left: 0.5em; /* marge a gauche */
-    cursor: pointer; /* curseur de pointeur */
-    transition: background-color 0.3s ease-in-out, transform 0.2s; /* transition pour la couleur de fond et la transformation */
+    border-radius: 50px;
+    height: 55px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 2em;
+    margin-left: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
 
 button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
-    transform: translateY(-2px); /* translation vers le haut au survol */
+    background-color: var(--primary-dark-color);
+    transform: translateY(-2px);
 }
 
 button:active {
-    background-color: var(--primary-dark-color); /* couleur de fond a l'activation */
-    transform: translateY(0); /* annule la translation */
+    background-color: var(--primary-dark-color);
+    transform: translateY(0);
 }
 
 #results-container {
-    margin-top: 20px; /* marge en haut */
+    margin-top: 20px;
 }
 
 #results {
-    display: flex; /* affichage en flexbox */
-    flex-wrap: wrap; /* les elements vont a la ligne si necessaire */
-    gap: 20px; /* espace entre les elements */
-    justify-content: center; /* centrer horizontalement */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 #filter-container {
-    display: flex; /* affichage en flexbox */
-    justify-content: flex-end; /* alignement a droite */
-    margin-top: 20px; /* marge en haut */
-    gap: 10px; /* espace entre les elements */
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
 }
 
 #filter-container input {
-    padding: 10px; /* padding */
-    border-radius: 10px; /* coins arrondis */
-    border: 1px solid #ccc; /* bordure */
-    font-size: 1rem; /* taille de police */
-    outline: none; /* pas de contour */
-    transition: border 0.3s, background-color 0.3s; /* transition pour la bordure et la couleur de fond */
-    width: 150px; /* largeur */
-    height: 45px; /* hauteur */
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s, background-color 0.3s;
+    width: 150px;
+    height: 45px;
 }
 
 #filter-container input:focus {
-    border: 2px solid var(--primary-color); /* bordure au focus */
-    background-color: #f9f9f9; /* couleur de fond au focus */
+    border: 2px solid var(--primary-color);
+    background-color: #f9f9f9;
 }
 
 #filter-container button {
-    padding: 10px 20px; /* padding interne */
-    border-radius: 10px; /* coins arrondis */
-    background-color: var(--primary-color); /* couleur de fond */
-    color: white; /* couleur du texte */
-    border: none; /* pas de bordure */
-    cursor: pointer; /* curseur de pointeur */
-    transition: background-color 0.3s ease-in-out; /* transition pour la couleur de fond */
-    height: 45px; /* hauteur */
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    height: 45px;
 }
 
 #filter-container button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
 #suggestions-header {
-    text-align: left; /* alignement a gauche */
-    font-size: 1.5rem; /* taille de police */
-    font-weight: 700; /* texte en gras */
-    color: var(--primary-color); /* couleur du texte */
-    margin-top: 40px; /* marge en haut */
-    margin-bottom: 10px; /* marge en bas */
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 #suggestions {
-    padding: 15px; /* padding */
-    border-radius: 15px; /* coins arrondis */
-    overflow: hidden; /* debordement cache */
-    white-space: nowrap; /* pas de retour a la ligne */
-    position: relative; /* position relative */
-    text-align: left; /* alignement a gauche */
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    text-align: left;
 }
 
 #suggestions-list {
-    display: flex; /* affichage en flexbox */
-    gap: 30px; /* espace entre les elements */
-    justify-content: center; /* centrer horizontalement */
+    display: flex;
+    gap: 30px;
+    justify-content: center;
 }
 
 .suggestion-item {
-    width: 220px; /* largeur */
-    flex: 0 0 auto; /* taille fixe */
-    padding: 10px; /* padding */
-    border-radius: 10px; /* coins arrondis */
-    transition: transform 0.3s, box-shadow 0.3s; /* transition pour la transformation et l'ombre */
-    text-align: center; /* alignement centre */
+    width: 220px;
+    flex: 0 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
 }
 
 .suggestion-item .suggestion-link {
-    text-decoration: none; /* pas de soulignement */
-    color: inherit; /* herite de la couleur du texte */
-    display: block; /* affichage en bloc */
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .suggestion-item .suggestion-poster {
-    width: 100%; /* largeur a 100% */
-    border-radius: 10px; /* coins arrondis */
-    margin-bottom: 10px; /* marge en bas */
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .suggestion-item .title {
-    font-size: 1.2em; /* taille de police */
-    color: var(--primary-color); /* couleur du texte */
-    font-weight: bold; /* texte en gras */
+    font-size: 1.2em;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .suggestion-item .year, .suggestion-item .rating {
-    font-size: 1em; /* taille de police */
-    color: var(--text-color); /* couleur du texte */
+    font-size: 1em;
+    color: var(--text-color);
 }
 
 .title {
-    font-size: 2.2em; /* taille de police */
-    font-family: 'Pacifico', cursive; /* police */
-    margin-top: 1.5em; /* marge en haut */
-    color: var(--primary-color); /* couleur du texte */
+    font-size: 2.2em;
+    font-family: 'Pacifico', cursive;
+    margin-top: 1.5em;
+    color: var(--primary-color);
 }
 
 .year {
-    font-size: 1.2em; /* taille de police */
-    font-style: italic; /* style italique */
-    margin: 0.4em 0; /* marge verticale */
+    font-size: 1.2em;
+    font-style: italic;
+    margin: 0.4em 0;
 }
 
 .rating {
-    font-size: 2em; /* taille de police */
-    margin: 0.5em 0; /* marge verticale */
-    color: var(--primary-color); /* couleur du texte */
+    font-size: 2em;
+    margin: 0.5em 0;
+    color: var(--primary-color);
 }
 
 img {
-    border-radius: 20px; /* coins arrondis */
-    border: 5px solid transparent; /* bordure transparente */
-    background-color: transparent; /* couleur de fond transparente */
-    background-image: linear-gradient(white, white), linear-gradient(to right, var(--primary-color), var(--primary-dark-color)); /* degrade de couleur */
-    background-origin: border-box; /* origine de l'arriere-plan */
-    background-clip: content-box, border-box; /* clip de l'arriere-plan */
-    padding: 10px; /* padding */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* ombre */
-    transition: transform 0.3s, box-shadow 0.3s; /* transition pour la transformation et l'ombre */
-    margin-bottom: 20px; /* marge en bas */
+    border-radius: 20px;
+    border: 5px solid transparent;
+    background-color: transparent;
+    background-image: linear-gradient(white, white), linear-gradient(to right, var(--primary-color), var(--primary-dark-color));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
 }
 
 img:hover {
-    transform: scale(1.05); /* agrandissement au survol */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* ombre plus grande au survol */
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .gold-star {
-    color: var(--accent-color); /* couleur d'accentuation */
-    font-size: 1.5rem; /* taille de police */
-    margin-right: 0.2em; /* marge a droite */
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-right: 0.2em;
 }
 
 a {
-    color: rgb(241, 51, 168); /* couleur du texte */
-    font-weight: bolder; /* texte en gras */
+    color: rgb(241, 51, 168);
+    font-weight: bolder;
 }
 
 .material-symbols-outlined {
-    color: rgb(136, 132, 132); /* couleur du texte */
-    margin-right: 1em; /* marge a droite */
-    margin-left: 20px; /* marge a gauche */
-    font-size: 2.5rem; /* taille de police */
+    color: rgb(136, 132, 132);
+    margin-right: 1em;
+    margin-left: 20px;
+    font-size: 2.5rem;
 }
 
 #header a.no-style-link {
-    text-decoration: none; /* pas de soulignement */
-    color: white; /* couleur du texte */
-    font-size: 60px; /* taille de police */
+    text-decoration: none;
+    color: white;
+    font-size: 60px;
 }
 
 .dropdown-content {
-    position: absolute; /* position absolue */
-    background-color: white; /* couleur de fond blanche */
-    width: 425px; /* largeur */
-    max-height: 200px; /* hauteur maximale */
-    overflow-y: auto; /* debordement en y defilant */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ombre */
-    z-index: 1; /* niveau z */
-    margin-top: 0px; /* marge en haut */
-    border-radius: 10px; /* coins arrondis */
-    text-align: left; /* alignement a gauche */
-    margin-left: 90px; /* marge a gauche */
+    position: absolute;
+    background-color: white;
+    width: 380px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 5px;
+    border-radius: 10px;
+    text-align: left;
 }
 
 .dropdown-content .suggestion-item {
-    padding: 10px; /* padding */
-    cursor: pointer; /* curseur de pointeur */
-    border-bottom: 1px solid #ddd; /* bordure en bas */
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
 .dropdown-content .suggestion-item:last-child {
-    border-bottom: none; /* pas de bordure en bas pour le dernier element */
+    border-bottom: none;
 }
 
 .dropdown-content .suggestion-item:hover {
-    background-color: #f1f1f1; /* couleur de fond au survol */
+    background-color: #f1f1f1;
 }
 
 .pagination-button {
-    margin: 0 5px; /* marge horizontale */
-    padding: 10px 20px; /* padding interne */
-    border: none; /* pas de bordure */
-    background-color: var(--primary-color); /* couleur de fond */
-    color: white; /* couleur du texte */
-    cursor: pointer; /* curseur de pointeur */
-    border-radius: 5px; /* coins arrondis */
-    transition: background-color 0.3s ease; /* transition pour la couleur de fond */
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .pagination-button:hover {
-    background-color: var(--primary-dark-color); /* couleur de fond au survol */
+    background-color: var(--primary-dark-color);
 }
 
 .pagination-button.active {
-    background-color: var(--primary-dark-color); /* couleur de fond pour le bouton actif */
-    font-weight: bold; /* texte en gras */
+    background-color: var(--primary-dark-color);
+    font-weight: bold;
 }
 
 .pagination-button:disabled {
-    background-color: #e0e0e0; /* couleur de fond pour le bouton desactive */
-    cursor: not-allowed; /* curseur non autorise */
+    background-color: #e0e0e0;
+    cursor: not-allowed;
 }
 
 #pagination {
-    display: flex; /* affichage en flexbox */
-    justify-content: center; /* centrer horizontalement */
-    margin-top: 20px; /* marge en haut */
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* pop-up window styles */
+.modal {
+    display: none; /* caché par défaut */
+    position: fixed; /* position fixe */
+    z-index: 1; /* reste au-dessus */
+    left: 0;
+    top: 0;
+    width: 100%; /* pleine largeur */
+    height: 100%; /* pleine hauteur */
+    overflow: auto; /* scroll si nécessaire */
+    background-color: rgb(0,0,0); /* couleur de fond */
+    background-color: rgba(0,0,0,0.4); /* couleur de fond avec opacité */
+}
+
+.modal-content {
+    background-color: #fefefe; /* couleur de fond du contenu */
+    margin: 15% auto; /* centré verticalement */
+    padding: 20px; /* padding */
+    border: 1px solid #888; /* bordure */
+    width: 80%; /* largeur */
+    border-radius: 10px; /* coins arrondis */
+}
+
+.close {
+    color: #aaa; /* couleur */
+    float: right; /* aligné à droite */
+    font-size: 28px; /* taille de police */
+    font-weight: bold; /* gras */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* couleur au survol */
+    text-decoration: none; /* pas de soulignement */
+    cursor: pointer; /* curseur */
 }

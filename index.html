@@ -13,8 +13,12 @@
         <header id="header">
             <a href="https://bechdeltest.com/" class="no-style-link">Bechdel Tracker</a> <!-- en-tête avec un lien vers le site Bechdel Test -->
         </header>
+        <div id="buttons-container"> <!-- conteneur pour les boutons -->
+            <button id="description-button">Description</button> <!-- bouton pour afficher la description -->
+            <button id="rating-button">Rating Explanation</button> <!-- bouton pour afficher l'explication des évaluations -->
+        </div>
         <main id="content"> <!-- zone de contenu principal -->
-            <section id="description">
+            <section id="description" style="display: none;"> <!-- section de description, cachée par défaut -->
                 <h3>Description</h3> <!-- en-tête pour la section description -->
                 <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel Test!
                 <ul>
@@ -25,7 +29,7 @@
                 It's a fun way to check how girl-powered your media is.<br/>
                 Stay fabulous! 💅✨</p>
             </section>
-            <section id="rating-explanation">
+            <section id="rating-explanation" style="display: none;"> <!-- section d'explication des évaluations, cachée par défaut -->
                 <h3>Bechdel Test Rating Explanation</h3> <!-- en-tête pour la section d'explication des évaluations -->
                 <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p> <!-- explication pour 0 étoile -->
                 <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> <!-- explication pour 1 étoile -->
@@ -59,6 +63,34 @@
         <div id="suggestions">
             <div id="suggestions-list" class="scrolling-list"></div> <!-- conteneur pour la liste des suggestions -->
             <div id="pagination"></div> <!-- conteneur pour la pagination -->
+        </div>
+    </div>
+
+    <!-- Pop-up pour la description -->
+    <div id="popup-description" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Description</h3>
+            <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel Test!
+            <ul>
+                <li>Two named women, like Barbie and her BFFs! 🌟</li>
+                <li>They chat? Totally! 💬</li>
+                <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
+            </ul>
+            It's a fun way to check how girl-powered your media is.<br/>
+            Stay fabulous! 💅✨</p>
+        </div>
+    </div>
+
+    <!-- Pop-up pour l'explication des évaluations -->
+    <div id="popup-rating" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Bechdel Test Rating Explanation</h3>
+            <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p>
+            <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p>
+            <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
+            <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p>
         </div>
     </div>
 </body>
