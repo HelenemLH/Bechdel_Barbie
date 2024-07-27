@@ -451,7 +451,7 @@ a {
     margin: 15% auto; /* centré verticalement */
     padding: 20px; /* padding */
     border: 1px solid #888; /* bordure */
-    width: 80%; /* largeur */
+    width: 15%; /* largeur */
     border-radius: 10px; /* coins arrondis */
 }
 
