@@ -1,8 +1,8 @@
-/* importer les polices google */
+/* importe les polices google */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500&display=swap');
 
-/* definir les variables css pour les couleurs et tailles */
+/* definie les variables css pour les couleurs et tailles */
 :root {
     --primary-color: #ff69b4; /* couleur principale */
     --primary-dark-color: #ff1493; /* couleur principale foncée */
@@ -27,15 +27,15 @@ body {
     text-align: center; /* centrer le texte */
     max-width: 1600px; /* largeur maximale */
     margin: auto; /* marges automatiques */
-    padding: 3em; /* padding de 3em */
-    border-radius: 15px; /* rayon de la bordure */
+    padding: 3em; /*padding permet de définir différents écarts de remplissage sur les quatre côtés d'un élément*/
+    border-radius: 15px; /* défini les coins arrondis ou non */
     border: 2px solid var(--background-color); /* bordure */
     background-color: var(--background-color); /* couleur de fond */
 }
 
 /* style pour l'en-tête */
 #header {
-    font-family: 'Pacifico', cursive; /* police cursive */
+    font-family: 'Pacifico', cursive; /* police + cursive */
     font-weight: bold; /* texte en gras */
     text-align: center; /* centrer le texte */
     font-size: 2.5rem; /* taille de police */
@@ -142,14 +142,14 @@ body {
     font-weight: 700; /* texte en gras */
 }
 
-/* style pour les étoiles en or */
+/* style pour les étoiles */
 .gold-star {
     color: var(--accent-color); /* couleur des étoiles */
     font-size: 50px; /* taille de police */
     margin-right: 0.2em; /* marge à droite */
 }
 
-/* style pour les petites résolutions d'écran */
+/* style pour les petits écrans */
 @media (max-width: 768px) {
     #content {
         flex-direction: column; /* direction en colonne */
