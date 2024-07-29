@@ -1,7 +1,7 @@
-<!DOCTYPE html> <!-- declaration du type de document, ici c'est un document html5 -->
-<html lang="fr"> <!-- balise principale du document html, 'lang="fr"' indique que le document est en français -->
+<!DOCTYPE html> <!-- declaration du type de document -->
+<html lang="fr"> <!-- balise principale du document html -->
 <head> <!-- section de l'entête du document contenant des informations sur le document -->
-    <meta charset="UTF-8"> <!-- meta tag pour definir l'encodage des caractères en utf-8 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- meta tag pour un affichage responsive, s'adapte a la largeur de l'écran -->
     <link rel="stylesheet" href="./style.css"> <!-- lien pour importer la feuille de style css -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> <!-- lien pour importer des icônes material -->
@@ -11,30 +11,30 @@
 <body> <!-- corps principal du document html -->
     <div id="wrapper"> <!-- div principal qui contient tout le contenu de la page, 'id="wrapper"' pour le styliser avec css -->
         <header id="header"> <!-- en-tête de la page, 'id="header"' pour le styliser avec css -->
-            <a href="https://bechdeltest.com/" class="no-style-link">bechdel tracker</a> <!-- lien vers le site bechdel test, 'class="no-style-link"' pour supprimer le style par defaut du lien -->
+            <a href="https://bechdeltest.com/" class="no-style-link">Bechdel tracker</a> <!-- lien vers le site bechdel test, 'class="no-style-link"' pour supprimer le style par defaut du lien -->
         </header>
         <div id="buttons-container"> <!-- conteneur pour les boutons de description et d'explication des notes, 'id="buttons-container"' pour le styliser avec css -->
-            <button id="description-button">description</button> <!-- bouton pour afficher la description, 'id="description-button"' pour le styliser avec css -->
-            <button id="rating-button">rating explanation</button> <!-- bouton pour afficher l'explication des notes, 'id="rating-button"' pour le styliser avec css -->
+            <button id="description-button">Description</button> <!-- bouton pour afficher la description, 'id="description-button"' pour le styliser avec css -->
+            <button id="rating-button">Rating explanation</button> <!-- bouton pour afficher l'explication des notes, 'id="rating-button"' pour le styliser avec css -->
         </div>
         <main id="content"> <!-- section principale du contenu, 'id="content"' pour le styliser avec css -->
             <section id="description" style="display: none;"> <!-- section pour la description, 'id="description"' pour le styliser avec css, 'style="display: none;"' pour le cacher par defaut -->
-                <h3>description</h3> <!-- titre de niveau 3 pour la description -->
-                <p>hey dolls! is your fave flick as fab as barbie's world? <br/> try the bechdel test! <!-- paragraphe avec une ligne de texte et un saut de ligne -->
+                <h3>Description</h3> <!-- titre de niveau 3 pour la description -->
+                <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel test! <!-- paragraphe avec une ligne de texte et un saut de ligne -->
                 <ul> <!-- liste non ordonnée -->
-                    <li>two named women, like barbie and her bffs! 🌟</li> <!-- élément de liste -->
-                    <li>they chat? totally! 💬</li> <!-- élément de liste -->
-                    <li>not about ken. maybe dreams or adventures? 🌍</li> <!-- élément de liste -->
+                    <li>Two named women, like Barbie and her BFFs! 🌟</li> <!--liste -->
+                    <li>They chat? Totally! 💬</li> <!-- liste -->
+                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li> <!-- liste -->
                 </ul>
-                it's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
-                stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
+                It's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
+                Stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
             </section>
             <section id="rating-explanation" style="display: none;"> <!-- section pour l'explication des notes, 'id="rating-explanation"' pour le styliser avec css, 'style="display: none;"' pour le cacher par defaut -->
-                <h3>bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
-                <p><strong class="gold-star">☆☆☆</strong>: fails all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️☆☆</strong>: has two named women, but they don't talk.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️⭐️☆</strong>: two named women talk, but about men.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: meets all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+                <h3>Bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
+                <p><strong class="gold-star">☆☆☆</strong>: Fails all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
             </section>
         </main>
         <div id="searchbar-container"> <!-- conteneur pour la barre de recherche, 'id="searchbar-container"' pour le styliser avec css -->
@@ -42,14 +42,14 @@
                 <form id="search-form" onsubmit="findMovie(); return false;"> <!-- formulaire pour la recherche, 'id="search-form"' pour le styliser avec css, 'onsubmit="findMovie(); return false;"' pour appeler la fonction findMovie au submit et empêcher le rechargement de la page -->
                     <div class="search"> <!-- div pour contenir les éléments de recherche, 'class="search"' pour le styliser avec css -->
                         <span class="material-symbols-outlined">search</span> <!-- icône de recherche, 'class="material-symbols-outlined"' pour le styliser avec css -->
-                        <input id="searchbartext" type="text" placeholder="find your flick 🎬" oninput="showSuggestions()"> <!-- champ de texte pour la recherche, 'id="searchbartext"' pour le styliser avec css, 'placeholder="find your flick 🎬"' pour le texte d'indication, 'oninput="showSuggestions()"' pour appeler la fonction showSuggestions a chaque saisie -->
+                        <input id="searchbartext" type="text" placeholder="Find your Flick 🎬" oninput="showSuggestions()"> <!-- champ de texte pour la recherche, 'id="searchbartext"' pour le styliser avec css, 'placeholder="find your flick 🎬"' pour le texte d'indication, 'oninput="showSuggestions()"' pour appeler la fonction showSuggestions a chaque saisie -->
                     </div>
                     <div id="suggestions-dropdown" class="dropdown-content"></div> <!-- div pour afficher les suggestions de films, 'id="suggestions-dropdown"' pour le styliser avec css, 'class="dropdown-content"' pour le styliser avec css -->
                 </form>
             </div>
             <div class="search-buttons"> <!-- div pour contenir les boutons de recherche, 'class="search-buttons"' pour le styliser avec css -->
-                <button type="submit" form="search-form">search</button> <!-- bouton pour soumettre le formulaire de recherche, 'type="submit"' pour le soumettre, 'form="search-form"' pour l'associer au formulaire de recherche -->
-                <button id="random-button" type="button" onclick="getRandomMovie()">random!</button> <!-- bouton pour obtenir un film aléatoire, 'id="random-button"' pour le styliser avec css, 'type="button"' pour un bouton classique, 'onclick="getRandomMovie()"' pour appeler la fonction getRandomMovie au clic -->
+                <button type="submit" form="search-form">Search</button> <!-- bouton pour soumettre le formulaire de recherche, 'type="submit"' pour le soumettre, 'form="search-form"' pour l'associer au formulaire de recherche -->
+                <button id="random-button" type="button" onclick="getRandomMovie()">Random!</button> <!-- bouton pour obtenir un film aléatoire, 'id="random-button"' pour le styliser avec css, 'type="button"' pour un bouton classique, 'onclick="getRandomMovie()"' pour appeler la fonction getRandomMovie au clic -->
             </div>
         </div>
         <div id="results-container"> <!-- conteneur pour les résultats de recherche, 'id="results-container"' pour le styliser avec css -->
@@ -74,23 +74,23 @@
             <h3>description</h3> <!-- titre de niveau 3 pour la description -->
             <p>hey dolls! is your fave flick as fab as barbie's world? <br/> try the bechdel test! <!-- paragraphe avec une ligne de texte et un saut de ligne -->
             <ul> <!-- liste non ordonnée -->
-                <li>two named women, like barbie and her bffs! 🌟</li> <!-- élément de liste -->
-                <li>they chat? totally! 💬</li> <!-- élément de liste -->
-                <li>not about ken. maybe dreams or adventures? 🌍</li> <!-- élément de liste -->
+                <li>Two named women, like Barbie and her BFFs! 🌟</li> <!-- élément de liste -->
+                <li>They chat? totally! 💬</li> <!-- élément de liste -->
+                <li>Not about Ken. Maybe dreams or adventures? 🌍</li> <!-- élément de liste -->
             </ul>
-            it's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
-            stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
+            It's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
+            Stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
         </div>
     </div>
     
     <div id="popup-rating" class="modal"> <!-- fenêtre pop-up pour l'explication des notes, 'id="popup-rating"' pour le styliser avec css, 'class="modal"' pour le styliser avec css -->
         <div class="modal-content"> <!-- contenu de la fenêtre pop-up, 'class="modal-content"' pour le styliser avec css -->
             <span class="close">&times;</span> <!-- bouton de fermeture de la fenêtre pop-up, 'class="close"' pour le styliser avec css -->
-            <h3>bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
-            <p><strong class="gold-star">☆☆☆</strong>: fails all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-            <p><strong class="gold-star">⭐️☆☆</strong>: has two named women, but they don't talk.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-            <p><strong class="gold-star">⭐️⭐️☆</strong>: two named women talk, but about men.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-            <p><strong class="gold-star">⭐️⭐️⭐️</strong>: meets all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+            <h3>Bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
+            <p><strong class="gold-star">☆☆☆</strong>: Fails all bechdel test criteria.</p>
+            <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> 
+            <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
+            <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all bechdel test criteria.</p> 
         </div>
     </div>
 </body>

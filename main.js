@@ -15,7 +15,7 @@ const API_URL = 'https://api.themoviedb.org/3';
 // proxy pour contourner les problemes cors
 const CORS_PROXY = 'https://corsproxy.io/?';
 
-// fonction pour decoder les entites html
+// fonction pour decoder les entites html (pour pas voir à la place de &amp; par ex)
 function decodeHtmlEntities(text) {
     // creer une textarea pour utiliser le decodage html natif du navigateur
     const textarea = document.createElement('textarea');
@@ -25,7 +25,7 @@ function decodeHtmlEntities(text) {
     return textarea.value;
 }
 
-// fonction pour reformater le titre d'un film
+// fonction pour reformater le titre d'un film (https://www.paulsblog.dev/manipulate-strings-with-regular-expression-in-javascript/)
 function reformatTitle(title) {
     // utiliser regex pour trouver des titres comme "titre, the" et les reformater
     const match = title.match(/^(.*?), (The|A|An)$/);
@@ -121,26 +121,26 @@ async function findMovie() {
 
 // fonction pour créer un élément de film
 function createMovieElement() {
-    // créer un div pour le film
+    // créer une div pour le film
     const movieElement = document.createElement("div");
-    // ajouter la classe 'movie' au div
+    // ajouter la classe 'movie' a la div
     movieElement.classList.add("movie");
-    // ajouter le contenu html dans le div
+    // ajouter le contenu html dans la div
     movieElement.innerHTML = `
         <div class="title"></div>
         <div class="year"></div>
         <div class="rating"></div>
         <a class="poster-link" href="" target="_blank"><img class="movie-poster" src="" alt="Movie Poster"/></a>
     `;
-    // retourner le div
+    // retourner la div
     return movieElement;
 }
 
 // fonction pour générer des etoiles de notation
 function generateStars(rating) {
-    // definir les etoiles pleines
+    // etoiles pleines
     const fullStar = '⭐';
-    // definir les etoiles vides
+    // etoiles vides
     const emptyStar = '☆';
     // definir la couleur des etoiles
     const starColor = '#FFD700';
