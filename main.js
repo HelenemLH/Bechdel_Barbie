@@ -28,7 +28,7 @@ function decodeHtmlEntities(text) {
 // fonction pour reformater le titre d'un film (https://www.paulsblog.dev/manipulate-strings-with-regular-expression-in-javascript/)
 function reformatTitle(title) {
     // utiliser regex pour trouver des titres comme "titre, the" et les reformater
-    const match = title.match(/^(.*?), (The|A|An)$/);
+    const match = title.match(/^(.*?), (The|A|An)$/); // | : où
     // si il y a un match, reformater le titre, sinon retourner le titre original
     return match ? `${match[2]} ${match[1]}` : title;
 }
