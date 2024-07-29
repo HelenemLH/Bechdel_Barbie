@@ -15,7 +15,7 @@ const API_URL = 'https://api.themoviedb.org/3';
 // proxy pour contourner les problemes cors
 const CORS_PROXY = 'https://corsproxy.io/?';
 
-// fonction pour decoder les entites html (pour pas voir &amp à la place de & par ex)
+// fonction pour decoder les entités html (caractères spéciaux -pour pas voir &amp à la place de & par ex)
 function decodeHtmlEntities(text) {
     // creer une textarea pour utiliser le decodage html natif du navigateur
     const textarea = document.createElement('textarea');
