@@ -286,7 +286,7 @@ function displayPagination(totalMovies, filters) {
     paginationContainer.innerHTML = "";
 
     // calculer le nombre total de pages
-    const totalPages = Math.ceil(totalMovies / moviesPerPage);
+    const totalPages = Math.ceil(totalMovies / moviesPerPage); //https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
     // definir le nombre maximal de pages a afficher
     const maxPagesToShow = 15;
     // calculer la premiere page a afficher
@@ -309,7 +309,7 @@ function displayPagination(totalMovies, filters) {
         // ajouter un ecouteur d'evenement au bouton pour changer de page quand on clique dessus
         pageButton.addEventListener("click", () => displayPage(i, filters));
         // ajouter le bouton au conteneur de la pagination
-        paginationContainer.appendChild(pageButton);
+        paginationContainer.appendChild(pageButton); //https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild
     }
 
     // si la page actuelle est inferieure au nombre total de pages, ajouter un bouton 'next'
@@ -337,14 +337,14 @@ function displayPagination(totalMovies, filters) {
         // ajouter un ecouteur d'evenement au bouton pour aller a la page précédente
         prevButton.addEventListener("click", () => displayPage(currentPage - 1, filters));
         // ajouter le bouton au debut du conteneur de la pagination
-        paginationContainer.prepend(prevButton);
+        paginationContainer.prepend(prevButton); //https://developer.mozilla.org/fr/docs/Web/API/Element/prepend
     }
 }
 
 // ajouter un ecouteur d'evenement pour le formulaire de filtre
 document.getElementById("filter-form").addEventListener("submit", function(event) {
     // empêche le comportement par defaut du formulaire
-    event.preventDefault();
+    event.preventDefault();//https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
     // obtenir l'annee du champ de filtre
     const year = parseInt(document.getElementById("year").value, 10);
     // definir les filtres
@@ -366,7 +366,7 @@ async function showSuggestions() {
     }
 
     // utiliser un debounce pour eviter de faire trop de requêtes
-    clearTimeout(debounceTimeout);
+    clearTimeout(debounceTimeout); //https://www.freecodecamp.org/news/javascript-debounce-example/
     debounceTimeout = setTimeout(async () => {
         // construire l'url pour la requête fetch
         const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(query)}`;
