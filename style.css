@@ -546,6 +546,5 @@ a {
 .close:hover,
 .close:focus {
     color: black; /* couleur du texte */
-    text-decoration: none; /* pas de décoration de texte */
     cursor: pointer; /* curseur pointeur */
 }
