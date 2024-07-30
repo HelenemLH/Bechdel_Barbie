@@ -39,7 +39,7 @@ async function fetchApiTmdb(imdbid) {
     const options = {
         method: 'GET',
         headers: {
-            accept: 'application/json', // accepter le format json
+            accept: 'application/json', 
             Authorization: `Bearer ${API_KEY}` // inclure la cle api dans l'autorisation
         }
     };
