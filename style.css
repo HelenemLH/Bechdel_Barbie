@@ -532,7 +532,7 @@ a {
     width: 90%; /* largeur 90% */
     max-width: 500px; /* largeur maximale */
     border-radius: 10px; /* coins arrondis */
-}
+} 
 
 /* styliser le bouton de fermeture */
 .close {
