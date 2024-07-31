@@ -365,7 +365,7 @@ async function showSuggestions() {
         return;
     }
 
-    // utiliser un debounce pour eviter de faire trop de requêtes
+    // utiliser un debounce pour eviter de faire trop de requêtes //https://developer-mozilla-org.translate.goog/en-US/docs/Web/API/clearTimeout?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=sc
     clearTimeout(debounceTimeout); //https://www.freecodecamp.org/news/javascript-debounce-example/
     debounceTimeout = setTimeout(async () => {
         // construire l'url pour la requête fetch

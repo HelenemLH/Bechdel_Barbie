@@ -446,7 +446,8 @@ a {
 .dropdown-content {
     position: absolute; /* position absolue */
     background-color: white; /* couleur de fond */
-    width: 85%; 
+    
+    margin-left: 80px;
     max-height: 200px; /* hauteur maximale */
     overflow-y: auto; /* défilement vertical */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ombre */
