@@ -161,6 +161,10 @@ body {
     }
 }
 
+#search-form {
+    width:100%;
+}
+
 /* styliser le conteneur de la barre de recherche */
 #searchbar-container {
     display: flex; /* utiliser flexbox */

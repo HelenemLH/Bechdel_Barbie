@@ -382,7 +382,7 @@ async function showSuggestions() {
 
         // ajouter chaque film trouvé aux suggestions
         data.slice(0, 5).forEach(movie => {
-            // créer un élément de suggestion
+            // créer un élément de suggestion 
             const suggestionItem = document.createElement("div");
             // ajouter la classe 'suggestion-item' a l'élément
             suggestionItem.classList.add("suggestion-item");
