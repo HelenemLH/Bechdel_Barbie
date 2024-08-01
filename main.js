@@ -322,7 +322,7 @@ function displayPagination(totalMovies, filters) {
         nextButton.classList.add("pagination-button");
         // ajouter un ecouteur d'evenement au bouton pour aller a la page suivante
         nextButton.addEventListener("click", () => displayPage(currentPage + 1, filters));
-        // ajouter le bouton au conteneur de la pagination
+        // ajouter le bouton au conteneur de la pagination //https://devdocs.io/dom/document/getelementsbyname(pour redimensionner boutons)
         paginationContainer.appendChild(nextButton);
     }
 

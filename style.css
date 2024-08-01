@@ -486,6 +486,8 @@ a {
     cursor: pointer; /* curseur pointeur */
     border-radius: 5px; /* coins arrondis */
     transition: background-color 0.3s ease; /* transition */
+    width:250px;
+    max-width:250px;
 }
 
 /* changer la couleur de fond au survol */
