@@ -178,8 +178,7 @@ body {
     background: blanchedalmond; /* couleur de fond */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ombre */
     transition: box-shadow 0.3s ease-in-out; /* transition pour l'ombre */
-    width: 100%; /* largeur 100% */
-    max-width: var(--searchbar-width); /* largeur maximale */
+    width:100%;
 }
 
 /* changer l'ombre au survol */
@@ -191,7 +190,6 @@ body {
 .search {
     display: flex; /* utiliser flexbox */
     align-items: center; /* aligner verticalement */
-    width: 100%; /* largeur 100% */
 }
 
 /* styliser les boutons de recherche */
@@ -204,7 +202,6 @@ body {
 
 /* styliser les champs de texte */
 input {
-    width: 47rem; /* largeur */
     border-radius: var(--searchbar-radius); /* coins arrondis */
     height: var(--searchbar-height); /* hauteur */
     box-shadow: none; /* pas d'ombre */
@@ -215,6 +212,7 @@ input {
     background: white; /* couleur de fond */
     padding: 0 1.5em; /* padding interne */
     transition: border 0.3s, background-color 0.3s; /* transitions */
+    width:100%;
 }
 
 /* changer la bordure et le fond quand le champ est en focus */
