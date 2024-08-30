@@ -55,12 +55,13 @@ async function fetchApiTmdb(imdbid) {
 }
 
 // url de mocky pour récupérer les données des films
-const mockyUrl = 'https://run.mocky.io/v3/8523e1bf-9da2-4b7b-93e8-bb82825682e9';
+//const mockyUrl = 'https://run.mocky.io/v3/a53d5bc7-3ee8-4b60-8808-104f029a3be6';
+const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(searchbartext)}`;
 
 // fonction pour récupérer les données d'un film a partir de mocky
 async function fetchApi(imdbid, movieElement) {
     // faire la requête fetch a mocky
-    const response = await fetch(mockyUrl);
+    const response = await fetch(url);
     // convertir la réponse en json
     const data = await response.json();
     // trouver le film dans les données qui correspond a l'id imdb
