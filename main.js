@@ -156,13 +156,18 @@ async function getRandomMovie() {
 }
 
 // function to fetch 3-star movies for the suggestions carousel
+// function to fetch 3-star movies for the suggestions carousel
 async function fetchThreeStarMovies() {
     const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getAllMovies`;
 
     try {
         const response = await fetch(url); // fetch all movies from the API
         const data = await response.json(); // parse the JSON response
-        threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1874 && movie.year <= 2025); // filter for 3-star movies
+        
+        // filter for 3-star movies and sort them by year in descending order
+        threeStarMovies = data
+            .filter(movie => movie.rating === 3 && movie.year >= 1874 && movie.year <= 2025)
+            .sort((a, b) => b.year - a.year); // sort from most recent to oldest
 
         if (threeStarMovies.length === 0) {
             alert("No 3-star movies available for suggestions.");
@@ -175,6 +180,7 @@ async function fetchThreeStarMovies() {
         console.error('Error fetching 3-star movies:', error); // log any errors
     }
 }
+
 
 // function to display the 3-star movie carousel
 function displayCarousel(movies) {
