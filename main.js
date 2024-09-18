@@ -1,6 +1,9 @@
 // TMDb API settings
 const TMDB_API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs';
 
+// Store all fetched 3-star movies to apply filters on them
+let threeStarMovies = [];
+
 // function to reformat movie titles like "Last Duel, The" to "The Last Duel"
 function reformatTitle(title) {
     const match = title.match(/^(.*?), (The|A|An)$/i); // match titles that end with ", The", ", A", ", An"
@@ -46,6 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("random-button").onclick = function() {
         getRandomMovie(); // trigger the random movie fetch
     };
+
+    // listen for the filter form submission
+    document.getElementById("filter-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // prevent form from submitting normally
+        const year = parseInt(document.getElementById("year").value, 10); // get the year from the input
+        applyFilter(year); // apply the filter to the 3-star movies
+    });
 
     // initialize the 3-star movie suggestions carousel
     fetchThreeStarMovies();
@@ -152,7 +162,7 @@ async function fetchThreeStarMovies() {
     try {
         const response = await fetch(url); // fetch all movies from the API
         const data = await response.json(); // parse the JSON response
-        const threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter for 3-star movies
+        threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter for 3-star movies
 
         if (threeStarMovies.length === 0) {
             alert("No 3-star movies available for suggestions.");
@@ -178,17 +188,29 @@ function displayCarousel(movies) {
         // reformat the title to avoid issues like "Last Duel, The"
         const formattedTitle = reformatTitle(movie.title);
 
-        // create the HTML for the movie suggestion
+        // create the HTML for the movie suggestion (only the poster is clickable)
         const suggestionItem = document.createElement("div");
         suggestionItem.classList.add("suggestion-item");
         suggestionItem.innerHTML = `
             <a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank">
                 ${posterUrl ? `<img src="${posterUrl}" alt="${formattedTitle} poster" class="suggestion-poster">` : `<p>No Poster Available</p>`}
-                <div class="title">${formattedTitle}</div>
-                <div class="year">${movie.year}</div>
-                <div class="rating">${generateStars(movie.rating)}</div>
             </a>
+            <div class="title">${formattedTitle}</div> <!-- title is not clickable -->
+            <div class="year">${movie.year}</div> <!-- year is not clickable -->
+            <div class="rating">${generateStars(movie.rating)}</div> <!-- rating is not clickable -->
         `;
         carouselContainer.appendChild(suggestionItem); // add the suggestion to the carousel
     });
+}
+
+// function to apply the year filter to the 3-star movies
+function applyFilter(year) {
+    if (!year) {
+        displayCarousel(threeStarMovies.slice(0, 10)); // if no year filter, display the original list
+        return;
+    }
+
+    // filter the 3-star movies by the selected year
+    const filteredMovies = threeStarMovies.filter(movie => movie.year === year);
+    displayCarousel(filteredMovies.slice(0, 10)); // display the filtered movies (limit to 10)
 }
