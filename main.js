@@ -1,8 +1,13 @@
 // TMDb API settings
-const TMDB_API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs'; 
-const TMDB_API_URL = 'https://api.themoviedb.org/3';
+const TMDB_API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs';
 
-// wait for the page to fully load before adding event listeners
+// function to reformat movie titles like "Last Duel, The" to "The Last Duel"
+function reformatTitle(title) {
+    const match = title.match(/^(.*?), (The|A|An)$/i); // match titles that end with ", The", ", A", ", An"
+    return match ? `${match[2]} ${match[1]}` : title; // reformat title if a match is found
+}
+
+// once the page is fully loaded, add all necessary event listeners
 document.addEventListener('DOMContentLoaded', () => {
 
     // open the description popup when the description button is clicked
@@ -42,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         getRandomMovie(); // trigger the random movie fetch
     };
 
+    // initialize the 3-star movie suggestions carousel
+    fetchThreeStarMovies();
 });
 
 // function to get the poster of a movie from TMDb using the IMDb ID
@@ -55,7 +62,7 @@ async function fetchPoster(imdbid) {
     };
 
     // use TMDb's find API to get movie data by IMDb ID
-    const response = await fetch(`${TMDB_API_URL}/find/tt${imdbid}?external_source=imdb_id`, options);
+    const response = await fetch(`https://api.themoviedb.org/3/find/tt${imdbid}?external_source=imdb_id`, options);
     const data = await response.json();
 
     const movieResult = data.movie_results[0];
@@ -95,12 +102,15 @@ function displayResults(movies) {
         // fetch the poster using the movie's IMDb ID
         const posterUrl = await fetchPoster(movie.imdbid);
 
+        // reformat the title to avoid issues like "Last Duel, The"
+        const formattedTitle = reformatTitle(movie.title);
+
         // build the movie details with poster, title, year, and rating
         movieElement.innerHTML = `
-            <h3>${movie.title || "Unknown Title"}</h3>
-            <p>Year: ${movie.year || "Unknown Year"}</p>
-            <p>Rating: ${generateStars(movie.rating || 0)}</p>
-            ${posterUrl ? `<a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank"><img src="${posterUrl}" alt="${movie.title} poster" class="movie-poster"></a>` : `<p>No Poster Available</p>`}
+            <h3 class="title">${formattedTitle || "Unknown Title"}</h3>
+            <p class="year">${movie.year || "Unknown Year"}</p>
+            <p class="rating">${generateStars(movie.rating || 0)}</p>
+            ${posterUrl ? `<a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank"><img src="${posterUrl}" alt="${formattedTitle} poster" class="movie-poster"></a>` : `<p>No Poster Available</p>`}
         `;
         resultsContainer.appendChild(movieElement); // add the movie element to the results container
     });
@@ -120,7 +130,7 @@ async function getRandomMovie() {
     try {
         const response = await fetch(url); // get all movies from the API
         const data = await response.json(); // parse the JSON response
-        const filteredMovies = data.filter(movie => movie.year >= 1995 && movie.year <= 2025); // filter movies by year
+        const filteredMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter 3-star movies
 
         if (filteredMovies.length === 0) {
             alert("No movies available for the selected years.");
@@ -135,40 +145,50 @@ async function getRandomMovie() {
     }
 }
 
-// function to show search suggestions as the user types
-let debounceTimeout; // for handling debouncing
-async function showSuggestions() {
-    const query = document.getElementById("searchbartext").value; // get the user's input
-    if (query.length < 3) {
-        document.getElementById("suggestions-dropdown").innerHTML = ""; // clear suggestions if input is too short
-        return;
-    }
+// function to fetch 3-star movies for the suggestions carousel
+async function fetchThreeStarMovies() {
+    const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getAllMovies`;
 
-    // debounce: wait a bit before fetching suggestions to avoid too many requests
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(async () => {
-        const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(query)}`;
+    try {
+        const response = await fetch(url); // fetch all movies from the API
+        const data = await response.json(); // parse the JSON response
+        const threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter for 3-star movies
 
-        try {
-            const response = await fetch(url); // get suggestions from the API
-            const data = await response.json(); // parse the JSON response
-            const suggestionsDropdown = document.getElementById("suggestions-dropdown"); // find the suggestions container
-            suggestionsDropdown.innerHTML = ""; // clear previous suggestions
-
-            // for each suggested movie, create a clickable item
-            data.slice(0, 5).forEach(movie => {
-                const suggestionItem = document.createElement("div"); // create a new div for each suggestion
-                suggestionItem.classList.add("suggestion-item"); // add a class for styling
-                suggestionItem.textContent = `${movie.title} (${movie.year})`; // display the title and year
-                suggestionItem.onclick = function() {
-                    document.getElementById("searchbartext").value = movie.title; // fill the search bar with the selected title
-                    suggestionsDropdown.innerHTML = ""; // clear the suggestions
-                    findMovie(); // search for the selected movie
-                };
-                suggestionsDropdown.appendChild(suggestionItem); // add the suggestion to the dropdown
-            });
-        } catch (error) {
-            console.error('Error fetching suggestions:', error); // log any errors
+        if (threeStarMovies.length === 0) {
+            alert("No 3-star movies available for suggestions.");
+            return;
         }
-    }, 300); // wait 300ms before fetching suggestions
+
+        // display the 3-star movie suggestions in a carousel
+        displayCarousel(threeStarMovies.slice(0, 10)); // limit to 10 movies for the carousel
+    } catch (error) {
+        console.error('Error fetching 3-star movies:', error); // log any errors
+    }
+}
+
+// function to display the 3-star movie carousel
+function displayCarousel(movies) {
+    const carouselContainer = document.getElementById("suggestions-list"); // get the suggestions container
+    carouselContainer.innerHTML = ""; // clear previous carousel content
+
+    // loop through each movie and create a carousel item
+    movies.forEach(async movie => {
+        const posterUrl = await fetchPoster(movie.imdbid); // fetch the movie poster
+
+        // reformat the title to avoid issues like "Last Duel, The"
+        const formattedTitle = reformatTitle(movie.title);
+
+        // create the HTML for the movie suggestion
+        const suggestionItem = document.createElement("div");
+        suggestionItem.classList.add("suggestion-item");
+        suggestionItem.innerHTML = `
+            <a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank">
+                ${posterUrl ? `<img src="${posterUrl}" alt="${formattedTitle} poster" class="suggestion-poster">` : `<p>No Poster Available</p>`}
+                <div class="title">${formattedTitle}</div>
+                <div class="year">${movie.year}</div>
+                <div class="rating">${generateStars(movie.rating)}</div>
+            </a>
+        `;
+        carouselContainer.appendChild(suggestionItem); // add the suggestion to the carousel
+    });
 }

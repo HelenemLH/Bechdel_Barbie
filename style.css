@@ -553,3 +553,63 @@ a {
     color: black; /* couleur du texte */
     cursor: pointer; /* curseur pointeur */
 }
+
+/* styliser le conteneur des suggestions */
+#suggestions {
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    text-align: left;
+    background-color: #fff;
+}
+
+/* styliser la liste des suggestions */
+#suggestions-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* permettre le défilement horizontal */
+    scroll-snap-type: x mandatory; /* défilement par éléments */
+    -webkit-overflow-scrolling: touch; /* défilement fluide pour les appareils mobiles */
+}
+
+.suggestion-item {
+    min-width: 200px; /* largeur minimale pour les items */
+    flex: 0 0 auto; /* empêcher les items de s'étendre */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    scroll-snap-align: start; /* alignement au début lors du défilement */
+}
+
+.suggestion-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* styliser les flèches de navigation */
+#carousel-prev, #carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#carousel-prev {
+    left: 10px;
+}
+
+#carousel-next {
+    right: 10px;
+}
+
+#carousel-prev:hover, #carousel-next:hover {
+    background-color: var(--primary-dark-color);
+}
