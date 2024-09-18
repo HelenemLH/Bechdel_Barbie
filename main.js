@@ -140,7 +140,7 @@ async function getRandomMovie() {
     try {
         const response = await fetch(url); // get all movies from the API
         const data = await response.json(); // parse the JSON response
-        const filteredMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter 3-star movies
+        const filteredMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1874 && movie.year <= 2025); // filter 3-star movies
 
         if (filteredMovies.length === 0) {
             alert("No movies available for the selected years.");
@@ -162,7 +162,7 @@ async function fetchThreeStarMovies() {
     try {
         const response = await fetch(url); // fetch all movies from the API
         const data = await response.json(); // parse the JSON response
-        threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2025); // filter for 3-star movies
+        threeStarMovies = data.filter(movie => movie.rating === 3 && movie.year >= 1874 && movie.year <= 2025); // filter for 3-star movies
 
         if (threeStarMovies.length === 0) {
             alert("No 3-star movies available for suggestions.");
