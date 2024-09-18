@@ -1,429 +1,174 @@
-// ajouter un ecouteur de evenement pour la touche "entree" sur la barre de recherche
-document.getElementById("searchbartext").addEventListener("keydown", function(event) {
-    // si la touche appuyee est "entree"
-    if (event.key === "Enter") {
-        // empêche le comportement par defaut du formulaire
-        event.preventDefault();
-        // appelle la fonction pour trouver un film
-        findMovie();
-    }
+// TMDb API settings
+const TMDB_API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs'; 
+const TMDB_API_URL = 'https://api.themoviedb.org/3';
+
+// wait for the page to fully load before adding event listeners
+document.addEventListener('DOMContentLoaded', () => {
+
+    // open the description popup when the description button is clicked
+    document.getElementById('description-button').onclick = function() {
+        document.getElementById('popup-description').style.display = 'block';
+    };
+
+    // open the rating explanation popup when the rating button is clicked
+    document.getElementById('rating-button').onclick = function() {
+        document.getElementById('popup-rating').style.display = 'block';
+    };
+
+    // add functionality to close the popups when the 'X' button is clicked
+    document.querySelectorAll('.close').forEach(function(element) {
+        element.onclick = function() {
+            element.parentElement.parentElement.style.display = 'none';
+        };
+    });
+
+    // close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    };
+
+    // listen for the 'Enter' key in the search bar to trigger a movie search
+    document.getElementById("searchbartext").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // stop form submission or page refresh
+            findMovie(); // trigger the movie search
+        }
+    });
+
+    // when the random button is clicked, fetch a random movie
+    document.getElementById("random-button").onclick = function() {
+        getRandomMovie(); // trigger the random movie fetch
+    };
+
 });
 
-// cle api pour acceder aux données de themoviedb
-const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2QyZWE4ODAyOWQwNzA1YWU2NDIyOTQwMmZiNWZmOCIsIm5iZiI6MTcyMTgyNDI0OS4zODA1NDksInN1YiI6IjY2OTU2NTc4M2NlMDlkZGVjNDRjMjY2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QY0t-k0EQcIz0rEhakWKqpeqzD5rw4-YA9BpcikeoHs';
-const API_URL = 'https://api.themoviedb.org/3';
-// proxy pour contourner les problemes cors
-const CORS_PROXY = 'https://corsproxy.io/?';
-
-// fonction pour decoder les entités html (caractères spéciaux -pour pas voir &amp à la place de & par ex)
-function decodeHtmlEntities(text) {
-    // creer une textarea pour utiliser le decodage html natif du navigateur
-    const textarea = document.createElement('textarea');
-    // mettre le texte avec les entites html dans la textarea
-    textarea.innerHTML = text;
-    // retourner le texte decode
-    return textarea.value;
-}
-
-// fonction pour reformater le titre d'un film (https://www.paulsblog.dev/manipulate-strings-with-regular-expression-in-javascript/)
-function reformatTitle(title) {
-    // utiliser regex pour trouver des titres comme "titre, the" et les reformater
-    const match = title.match(/^(.*?), (The|A|An)$/); // | : où
-    // si il y a un match, reformater le titre, sinon retourner le titre original
-    return match ? `${match[2]} ${match[1]}` : title;
-}
-
-// fonction pour récupérer les données du film de tmdb
-async function fetchApiTmdb(imdbid) {
-    // options pour la requête fetch
+// function to get the poster of a movie from TMDb using the IMDb ID
+async function fetchPoster(imdbid) {
     const options = {
         method: 'GET',
         headers: {
-            accept: 'application/json', 
-            Authorization: `Bearer ${API_KEY}` // inclure la cle api dans l'autorisation
+            accept: 'application/json',
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
-    // faire la requête fetch avec l'id imdb
-    const response = await fetch(`${API_URL}/find/tt${imdbid}?external_source=imdb_id`, options);
-    // convertir la réponse en json
+
+    // use TMDb's find API to get movie data by IMDb ID
+    const response = await fetch(`${TMDB_API_URL}/find/tt${imdbid}?external_source=imdb_id`, options);
     const data = await response.json();
-    // prendre le premier resultat du film
+
     const movieResult = data.movie_results[0];
-
-    // si il y a un resultat, retourner l'url du poster, sinon null
-    return movieResult ? { posterUrl: `https://image.tmdb.org/t/p/w500${movieResult.poster_path}` } : null;
-}
-
-// url de mocky pour récupérer les données des films
-//const mockyUrl = 'https://run.mocky.io/v3/a53d5bc7-3ee8-4b60-8808-104f029a3be6';
-const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(searchbartext)}`;
-
-// fonction pour récupérer les données d'un film a partir de mocky
-async function fetchApi(imdbid, movieElement) {
-    // faire la requête fetch a mocky
-    const response = await fetch(url);
-    // convertir la réponse en json
-    const data = await response.json();
-    // trouver le film dans les données qui correspond a l'id imdb
-    const film = data.find(film => film.imdbid === imdbid);
-
-    if (film) {
-        // si le film est trouvé, extraire le titre, l'annee et la note
-        const { title, year, rating } = film;
-        // mettre a jour les elements html avec les données du film
-        movieElement.querySelector(".title").textContent = reformatTitle(decodeHtmlEntities(title));
-        movieElement.querySelector(".year").textContent = year;
-        movieElement.querySelector(".rating").innerHTML = generateStars(rating);
-    }
-}
-
-// fonction pour trouver un film
-async function findMovie() {
-    // recuperer le texte de la barre de recherche
-    const searchbartext = document.getElementById("searchbartext").value.trim();
-    // si le texte est vide, arrêter la fonction
-    if (searchbartext.length === 0) {
-        return;
-    }
-    
-    // construire l'url pour la requête fetch
-    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(searchbartext)}`;
-    // faire la requête fetch
-    const response = await fetch(url);
-    // convertir la réponse en json
-    const data = await response.json();
-    // vider le conteneur des resultats
-    const resultsContainer = document.getElementById("results");
-    resultsContainer.innerHTML = "";
-
-    // créer une liste de promesses pour chaque film trouvé
-    const fetchPromises = data.map(async movie => {
-        // créer un element html pour le film
-        const movieElement = createMovieElement();
-        // ajouter l'element au conteneur des resultats
-        resultsContainer.appendChild(movieElement);
-        // récupérer les données du film depuis mocky
-        await fetchApi(movie.imdbid, movieElement);
-        // récupérer les données du poster depuis tmdb
-        const tmdbData = await fetchApiTmdb(movie.imdbid);
-        if (tmdbData) {
-            // si les données du poster sont disponibles, mettre a jour l'élément html
-            movieElement.querySelector(".movie-poster").src = tmdbData.posterUrl;
-            movieElement.querySelector(".poster-link").href = `https://www.imdb.com/title/tt${movie.imdbid}`;
-        } else {
-            // sinon, supprimer l'élément html
-            movieElement.remove();
-        }
-    });
-
-    // attendre que toutes les promesses soient terminées
-    await Promise.all(fetchPromises);
-}
-
-// fonction pour créer un élément de film
-function createMovieElement() {
-    // créer une div pour le film
-    const movieElement = document.createElement("div");
-    // ajouter la classe 'movie' a la div
-    movieElement.classList.add("movie");
-    // ajouter le contenu html dans la div
-    movieElement.innerHTML = `
-        <div class="title"></div>
-        <div class="year"></div>
-        <div class="rating"></div>
-        <a class="poster-link" href="" target="_blank"><img class="movie-poster" src="" alt="Movie Poster"/></a>
-    `;
-    // retourner la div
-    return movieElement;
-}
-
-// fonction pour générer des etoiles de notation
-function generateStars(rating) {
-    // etoiles pleines
-    const fullStar = '⭐';
-    // etoiles vides
-    const emptyStar = '☆';
-    // definir la couleur des etoiles
-    const starColor = '#FFD700';
-    // générer les etoiles en fonction de la note
-    return `<span style="color: ${starColor};">${fullStar.repeat(rating) + emptyStar.repeat(3 - rating)}</span>`;
-}
-
-// fonction pour récupérer tous les films
-async function fetchAllMovies() {
-    // construire l'url pour la requête fetch
-    const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getAllMovies`;
-    // faire la requête fetch
-    const response = await fetch(url);
-    // retourner la réponse convertie en json
-    return response.json();
-}
-
-// fonction pour obtenir un element aleatoire d'un tableau
-function getRandomItem(array) {
-    // retourner un element aleatoire du tableau
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-// fonction pour obtenir un film aleatoire
-async function getRandomMovie() {
-    // récupérer tous les films
-    const allMovies = await fetchAllMovies();
-    // filtrer les films par annee
-    const filteredMovies = allMovies.filter(movie => movie.year >= 1995 && movie.year <= 2025);
-
-    // si aucun film n'est disponible, afficher une alerte
-    if (filteredMovies.length === 0) {
-        alert("no movies available for the selected years");
-        return;
-    }
-
-    // obtenir un film aleatoire
-    const randomMovie = getRandomItem(filteredMovies);
-
-    // vider le conteneur des resultats
-    const resultsContainer = document.getElementById("results");
-    resultsContainer.innerHTML = "";
-
-    // créer un élément de film
-    const movieElement = createMovieElement();
-    // ajouter l'élément au conteneur des resultats
-    resultsContainer.appendChild(movieElement);
-
-    // récupérer les données du film
-    await fetchApi(randomMovie.imdbid, movieElement);
-    const tmdbData = await fetchApiTmdb(randomMovie.imdbid);
-    if (tmdbData) {
-        // si les données du poster sont disponibles, mettre a jour l'élément html
-        movieElement.querySelector(".movie-poster").src = tmdbData.posterUrl;
-        movieElement.querySelector(".poster-link").href = `https://www.imdb.com/title/tt${randomMovie.imdbid}`;
+    if (movieResult) {
+        return `https://image.tmdb.org/t/p/w500${movieResult.poster_path}`; // return the poster URL if available
     } else {
-        // sinon, supprimer l'élément html
-        movieElement.remove();
+        return null; // if no poster is available
     }
 }
 
-// tableau pour stocker les films trois etoiles
-let threeStarMovies = [];
-// variable pour la page actuelle
-let currentPage = 1;
-// nombre de films par page
-const moviesPerPage = 4;
+// function to fetch and display movie data based on the search query
+async function findMovie() {
+    const searchbartext = document.getElementById("searchbartext").value.trim(); // get the search text
+    if (searchbartext.length === 0) return; // if no text, do nothing
 
-// fonction pour récupérer les films trois etoiles
-async function fetchThreeStarMovies() {
-    // récupérer tous les films
-    const allMovies = await fetchAllMovies();
-    // filtrer les films trois etoiles par annee
-    threeStarMovies = allMovies.filter(movie => movie.rating === 3 && movie.year >= 1995 && movie.year <= 2024);
-    // trier les films par annee
-    threeStarMovies.sort((a, b) => b.year - a.year);
-    // afficher la premiere page
-    displayPage(1);
+    const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(searchbartext)}`;
+
+    try {
+        const response = await fetch(url); // get movie data from Bechdel API
+        const data = await response.json(); // parse the JSON response
+        displayResults(data); // display the results
+    } catch (error) {
+        console.error('Error fetching movie data:', error); // log any errors
+    }
 }
 
-// fonction pour appliquer des filtres sur les films
-function applyFilters(movies, filters) {
-    // filtrer les films en fonction des filtres
-    return movies.filter(movie => {
-        // verifier si le film correspond a l'annee du filtre
-        const matchesYear = filters.year ? movie.year === filters.year : true;
-        return matchesYear;
+// function to display the search results, including posters, titles, years, and ratings
+function displayResults(movies) {
+    const resultsContainer = document.getElementById('results'); // the container for displaying results
+    resultsContainer.innerHTML = ""; // clear any previous results
+
+    // loop through each movie and create its HTML element
+    movies.forEach(async movie => {
+        const movieElement = document.createElement('div'); // create a new div for each movie
+        movieElement.classList.add('movie'); // add the 'movie' class for styling
+
+        // fetch the poster using the movie's IMDb ID
+        const posterUrl = await fetchPoster(movie.imdbid);
+
+        // build the movie details with poster, title, year, and rating
+        movieElement.innerHTML = `
+            <h3>${movie.title || "Unknown Title"}</h3>
+            <p>Year: ${movie.year || "Unknown Year"}</p>
+            <p>Rating: ${generateStars(movie.rating || 0)}</p>
+            ${posterUrl ? `<a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank"><img src="${posterUrl}" alt="${movie.title} poster" class="movie-poster"></a>` : `<p>No Poster Available</p>`}
+        `;
+        resultsContainer.appendChild(movieElement); // add the movie element to the results container
     });
 }
 
-// fonction pour afficher une page de films
-function displayPage(page, filters = {}) {
-    // mettre a jour la page actuelle
-    currentPage = page;
-    // appliquer les filtres sur les films
-    const filteredMovies = applyFilters(threeStarMovies, filters);
-    // calculer les indices de debut et de fin pour la pagination
-    const startIndex = (page - 1) * moviesPerPage;
-    const endIndex = startIndex + moviesPerPage;
-    // sélectionner les films a afficher
-    const moviesToDisplay = filteredMovies.slice(startIndex, endIndex);
+// function to generate star ratings
+function generateStars(rating) {
+    const fullStar = '⭐';
+    const emptyStar = '☆';
+    return fullStar.repeat(rating) + emptyStar.repeat(3 - rating); // build the stars based on the rating
+}
 
-    // obtenir le conteneur des suggestions
-    const suggestionsContainer = document.getElementById("suggestions-list");
-    // vider le conteneur des suggestions
-    suggestionsContainer.innerHTML = "";
+// function to fetch and display a random movie from the Bechdel API
+async function getRandomMovie() {
+    const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getAllMovies`;
 
-    // créer une liste de promesses pour chaque film a afficher
-    const fetchPromises = moviesToDisplay.map(async movie => {
-        // récupérer les données du poster du film depuis tmdb
-        const tmdbData = await fetchApiTmdb(movie.imdbid);
-        if (tmdbData) {
-            // créer un élément de suggestion pour le film
-            const suggestionElement = document.createElement("div");
-            // ajouter la classe 'suggestion-item' a l'élément
-            suggestionElement.classList.add("suggestion-item");
-            // ajouter le contenu html dans l'élément
-            suggestionElement.innerHTML = `
-                <a href="https://www.imdb.com/title/tt${movie.imdbid}" target="_blank" class="suggestion-link">
-                    <img src="${tmdbData.posterUrl}" alt="${reformatTitle(decodeHtmlEntities(movie.title))} Poster" class="suggestion-poster"/>
-                    <div class="title">${reformatTitle(decodeHtmlEntities(movie.title))}</div>
-                    <div class="year">${movie.year}</div>
-                    <div class="rating">${generateStars(movie.rating)}</div>
-                </a>
-            `;
-            // ajouter l'élément de suggestion au conteneur des suggestions
-            suggestionsContainer.appendChild(suggestionElement);
+    try {
+        const response = await fetch(url); // get all movies from the API
+        const data = await response.json(); // parse the JSON response
+        const filteredMovies = data.filter(movie => movie.year >= 1995 && movie.year <= 2025); // filter movies by year
+
+        if (filteredMovies.length === 0) {
+            alert("No movies available for the selected years.");
+            return;
         }
-    });
 
-    // attendre que toutes les promesses soient terminées
-    Promise.all(fetchPromises).then(() => {
-        // afficher la pagination
-        displayPagination(filteredMovies.length, filters);
-    });
-}
-
-// fonction pour afficher la pagination
-function displayPagination(totalMovies, filters) {
-    // obtenir le conteneur de la pagination
-    const paginationContainer = document.getElementById("pagination");
-    // vider le conteneur de la pagination
-    paginationContainer.innerHTML = "";
-
-    // calculer le nombre total de pages
-    const totalPages = Math.ceil(totalMovies / moviesPerPage); //https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
-    // definir le nombre maximal de pages a afficher
-    const maxPagesToShow = 15;
-    // calculer la premiere page a afficher
-    const startPage = Math.max(Math.min(currentPage - Math.floor(maxPagesToShow / 2), totalPages - maxPagesToShow + 1), 1);
-    // calculer la derniere page a afficher
-    const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
-
-    // boucle pour créer les boutons de pagination pour chaque page a afficher
-    for (let i = startPage; i <= endPage; i++) {
-        // créer un bouton pour chaque page
-        const pageButton = document.createElement("button");
-        // definir le texte du bouton comme le numero de la page
-        pageButton.innerText = i;
-        // ajouter la classe 'pagination-button' au bouton
-        pageButton.classList.add("pagination-button");
-        // si c'est la page actuelle, ajouter la classe 'active'
-        if (i === currentPage) {
-            pageButton.classList.add("active");
-        }
-        // ajouter un ecouteur d'evenement au bouton pour changer de page quand on clique dessus
-        pageButton.addEventListener("click", () => displayPage(i, filters));
-        // ajouter le bouton au conteneur de la pagination
-        paginationContainer.appendChild(pageButton); //https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild
-    }
-
-    // si la page actuelle est inferieure au nombre total de pages, ajouter un bouton 'next'
-    if (currentPage < totalPages) {
-        // créer un bouton 'next'
-        const nextButton = document.createElement("button");
-        // definir le texte du bouton
-        nextButton.innerText = "Next";
-        // ajouter la classe 'pagination-button' au bouton
-        nextButton.classList.add("pagination-button");
-        // ajouter un ecouteur d'evenement au bouton pour aller a la page suivante
-        nextButton.addEventListener("click", () => displayPage(currentPage + 1, filters));
-        // ajouter le bouton au conteneur de la pagination //https://devdocs.io/dom/document/getelementsbyname(pour redimensionner boutons)
-        paginationContainer.appendChild(nextButton);
-    }
-
-    // si la page actuelle est superieure a 1, ajouter un bouton 'previous'
-    if (currentPage > 1) {
-        // créer un bouton 'previous'
-        const prevButton = document.createElement("button");
-        // definir le texte du bouton
-        prevButton.innerText = "Previous";
-        // ajouter la classe 'pagination-button' au bouton
-        prevButton.classList.add("pagination-button");
-        // ajouter un ecouteur d'evenement au bouton pour aller a la page précédente
-        prevButton.addEventListener("click", () => displayPage(currentPage - 1, filters));
-        // ajouter le bouton au debut du conteneur de la pagination
-        paginationContainer.prepend(prevButton); //https://developer.mozilla.org/fr/docs/Web/API/Element/prepend
+        // pick a random movie from the filtered list
+        const randomMovie = filteredMovies[Math.floor(Math.random() * filteredMovies.length)];
+        displayResults([randomMovie]); // display the random movie
+    } catch (error) {
+        console.error('Error fetching random movie:', error); // log any errors
     }
 }
 
-// ajouter un ecouteur d'evenement pour le formulaire de filtre
-document.getElementById("filter-form").addEventListener("submit", function(event) {
-    // empêche le comportement par defaut du formulaire
-    event.preventDefault();//https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
-    // obtenir l'annee du champ de filtre
-    const year = parseInt(document.getElementById("year").value, 10);
-    // definir les filtres
-    const filters = { year };
-    // afficher la premiere page avec les filtres appliques
-    displayPage(1, filters);
-});
-
-// variable pour le timeout de debounce
-let debounceTimeout;
-// fonction pour afficher les suggestions de films pendant la saisie
+// function to show search suggestions as the user types
+let debounceTimeout; // for handling debouncing
 async function showSuggestions() {
-    // obtenir le texte de la barre de recherche
-    const query = document.getElementById("searchbartext").value;
-    // si le texte est trop court, vider les suggestions
+    const query = document.getElementById("searchbartext").value; // get the user's input
     if (query.length < 3) {
-        document.getElementById("suggestions-dropdown").innerHTML = "";
+        document.getElementById("suggestions-dropdown").innerHTML = ""; // clear suggestions if input is too short
         return;
     }
 
-    // utiliser un debounce pour eviter de faire trop de requêtes //https://developer-mozilla-org.translate.goog/en-US/docs/Web/API/clearTimeout?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=sc
-    clearTimeout(debounceTimeout); //https://www.freecodecamp.org/news/javascript-debounce-example/
+    // debounce: wait a bit before fetching suggestions to avoid too many requests
+    clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(async () => {
-        // construire l'url pour la requête fetch
-        const url = `${CORS_PROXY}https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(query)}`;
-        // faire la requête fetch
-        const response = await fetch(url);
-        // convertir la réponse en json
-        const data = await response.json();
+        const url = `https://corsproxy.io/?https://bechdeltest.com/api/v1/getMoviesByTitle?title=${encodeURIComponent(query)}`;
 
-        // obtenir le conteneur des suggestions
-        const suggestionsDropdown = document.getElementById("suggestions-dropdown");
-        // vider le conteneur des suggestions
-        suggestionsDropdown.innerHTML = "";
+        try {
+            const response = await fetch(url); // get suggestions from the API
+            const data = await response.json(); // parse the JSON response
+            const suggestionsDropdown = document.getElementById("suggestions-dropdown"); // find the suggestions container
+            suggestionsDropdown.innerHTML = ""; // clear previous suggestions
 
-        // ajouter chaque film trouvé aux suggestions
-        data.slice(0, 5).forEach(movie => {
-            // créer un élément de suggestion 
-            const suggestionItem = document.createElement("div");
-            // ajouter la classe 'suggestion-item' a l'élément
-            suggestionItem.classList.add("suggestion-item");
-            // definir le texte du suggestionItem avec le titre et l'annee du film
-            suggestionItem.textContent = `${reformatTitle(decodeHtmlEntities(movie.title))} (${movie.year})`;
-            // ajouter un ecouteur d'evenement au suggestionItem pour remplir la barre de recherche et trouver le film
-            suggestionItem.addEventListener("click", () => {
-                document.getElementById("searchbartext").value = reformatTitle(decodeHtmlEntities(movie.title));
-                suggestionsDropdown.innerHTML = "";
-                findMovie();
+            // for each suggested movie, create a clickable item
+            data.slice(0, 5).forEach(movie => {
+                const suggestionItem = document.createElement("div"); // create a new div for each suggestion
+                suggestionItem.classList.add("suggestion-item"); // add a class for styling
+                suggestionItem.textContent = `${movie.title} (${movie.year})`; // display the title and year
+                suggestionItem.onclick = function() {
+                    document.getElementById("searchbartext").value = movie.title; // fill the search bar with the selected title
+                    suggestionsDropdown.innerHTML = ""; // clear the suggestions
+                    findMovie(); // search for the selected movie
+                };
+                suggestionsDropdown.appendChild(suggestionItem); // add the suggestion to the dropdown
             });
-            // ajouter le suggestionItem au conteneur des suggestions
-            suggestionsDropdown.appendChild(suggestionItem);
-        });
-    }, 300);
+        } catch (error) {
+            console.error('Error fetching suggestions:', error); // log any errors
+        }
+    }, 300); // wait 300ms before fetching suggestions
 }
-
-// initialiser la récupération des films trois etoiles
-fetchThreeStarMovies();
-
-// montrer la fenêtre pop-up pour la description quand le bouton est cliqué
-document.getElementById('description-button').onclick = function() {
-    document.getElementById('popup-description').style.display = 'block';
-};
-
-// montrer la fenêtre pop-up pour l'explication des notes quand le bouton est cliqué
-document.getElementById('rating-button').onclick = function() {
-    document.getElementById('popup-rating').style.display = 'block';
-};
-
-// ajouter un ecouteur d'evenement pour fermer les fenêtres pop-up quand le bouton de fermeture est cliqué
-document.querySelectorAll('.close').forEach(function(element) {
-    element.onclick = function() {
-        element.parentElement.parentElement.style.display = 'none';
-    };
-});
-
-// ajouter un ecouteur d'evenement pour fermer les fenêtres pop-up quand on clique en dehors
-window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-    }
-};
