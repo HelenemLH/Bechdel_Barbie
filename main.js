@@ -5,6 +5,9 @@ let threeStarMovies = [];
 let currentPage = 0;  // Keep track of the current page (set of 5 movies)
 let itemsPerPage = 5; // Limit the number of movies shown per page
 
+let startX = 0;
+let endX = 0;
+
 // Function to reformat movie titles like "Last Duel, The" to "The Last Duel"
 function reformatTitle(title) {
     const match = title.match(/^(.*?), (The|A|An)$/i); // match titles that end with ", The", ", A", ", An"
@@ -63,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the 3-star movie suggestions carousel
     fetchThreeStarMovies();
+
+    // Add touch event listeners for swipe functionality
+    document.getElementById('suggestions-list').addEventListener('touchstart', handleTouchStart, false);
+    document.getElementById('suggestions-list').addEventListener('touchmove', handleTouchMove, false);
+    document.getElementById('suggestions-list').addEventListener('touchend', handleTouchEnd, false);
 });
 
 // Function to get the poster of a movie from TMDb using the IMDb ID
@@ -237,6 +245,33 @@ function applyFilter(year) {
         threeStarMovies = filteredMovies; // Update the global variable to hold only filtered movies
         displayCarousel(filteredMovies.slice(0, itemsPerPage)); // Display the first page of filtered movies
     }
+}
+
+// Swipe functionality using touch events
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX; // Capture the initial X position when the touch starts
+}
+
+function handleTouchMove(event) {
+    endX = event.touches[0].clientX; // Capture the X position as the touch moves
+}
+
+function handleTouchEnd() {
+    const deltaX = startX - endX; // Calculate the difference between start and end positions
+
+    if (Math.abs(deltaX) > 50) { // Only consider it a swipe if the movement is significant
+        if (deltaX > 0) {
+            // Swipe left, show next page
+            scrollCarousel('next');
+        } else {
+            // Swipe right, show previous page
+            scrollCarousel('prev');
+        }
+    }
+
+    // Reset values
+    startX = 0;
+    endX = 0;
 }
 
 // Function to show movie suggestions dropdown as user types in the search bar
