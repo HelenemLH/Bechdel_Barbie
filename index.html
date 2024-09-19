@@ -1,97 +1,121 @@
-<!DOCTYPE html> <!-- declaration du type de document -->
-<html lang="fr"> <!-- balise principale du document html -->
-<head> <!-- section de l'entête du document contenant des informations sur le document -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- meta tag pour un affichage responsive, s'adapte a la largeur de l'écran -->
-    <link rel="stylesheet" href="./style.css"> <!-- lien pour importer la feuille de style css -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> <!-- lien pour importer des icônes material -->
-    <title>💖 my bechdel tracker 💖</title> <!-- titre de la page qui apparaîtra dans l'onglet du navigateur -->
-    <script src="./main.js" defer></script> <!-- script pour importer le fichier javascript, 'defer' pour l'executer après le chargement du document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <title>💖 My Bechdel Tracker 💖</title>
+    <script src="./main.js" defer></script> <!-- Ensure the JavaScript is properly linked -->
 </head>
-<body> <!-- corps principal du document html -->
-    <div id="wrapper"> <!-- div principal qui contient tout le contenu de la page, 'id="wrapper"' pour le styliser avec css -->
-        <header id="header"> <!-- en-tête de la page, 'id="header"' pour le styliser avec css -->
-            <a href="https://bechdeltest.com/" class="no-style-link">Bechdel tracker</a> <!-- lien vers le site bechdel test, 'class="no-style-link"' pour supprimer le style par defaut du lien -->
+<body>
+    <div id="wrapper">
+        <header id="header">
+            <a href="https://bechdeltest.com/" class="no-style-link">Bechdel Tracker</a>
         </header>
-        <div id="buttons-container"> <!-- conteneur pour les boutons de description et d'explication des notes, 'id="buttons-container"' pour le styliser avec css -->
-            <button id="description-button">Description</button> <!-- bouton pour afficher la description, 'id="description-button"' pour le styliser avec css -->
-            <button id="rating-button">Rating explanation</button> <!-- bouton pour afficher l'explication des notes, 'id="rating-button"' pour le styliser avec css -->
+
+        <!-- Buttons for description and rating explanation -->
+        <div id="buttons-container">
+            <button id="description-button">Description</button>
+            <button id="rating-button">Rating Explanation</button>
         </div>
-        <main id="content"> <!-- section principale du contenu, 'id="content"' pour le styliser avec css -->
-            <section id="description" style="display: none;"> <!-- section pour la description, 'id="description"' pour le styliser avec css, 'style="display: none;"' pour le cacher par defaut -->
-                <h3>Description</h3> <!-- titre de niveau 3 pour la description -->
-                <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br/> Try the Bechdel test! <!-- paragraphe avec une ligne de texte et un saut de ligne -->
-                <ul> <!-- liste non ordonnée -->
-                    <li>Two named women, like Barbie and her BFFs! 🌟</li> <!--liste -->
-                    <li>They chat? Totally! 💬</li> <!-- liste -->
-                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li> <!-- liste -->
+
+        <!-- Main content section for descriptions and ratings -->
+        <main id="content">
+            <section id="description" style="display: none;">
+                <h3>Description</h3>
+                <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br> Try the Bechdel test!
+                <ul>
+                    <li>Two named women, like Barbie and her BFFs! 🌟</li>
+                    <li>They chat? Totally! 💬</li>
+                    <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
                 </ul>
-                It's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
-                Stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
+                It's a fun way to check how girl-powered your media is.<br> Stay fabulous! 💅✨</p>
             </section>
-            <section id="rating-explanation" style="display: none;"> <!-- section pour l'explication des notes, 'id="rating-explanation"' pour le styliser avec css, 'style="display: none;"' pour le cacher par defaut -->
-                <h3>Bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
-                <p><strong class="gold-star">☆☆☆</strong>: Fails all bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
-                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p> <!-- paragraphe avec des etoiles en or pour illustrer les notes -->
+
+            <section id="rating-explanation" style="display: none;">
+                <h3>Bechdel Test Rating Explanation</h3>
+                <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p>
+                <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p>
+                <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
+                <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p>
             </section>
         </main>
-        <div id="searchbar-container"> <!-- conteneur pour la barre de recherche, 'id="searchbar-container"' pour le styliser avec css -->
-            <div id="searchbar"> <!-- div pour la barre de recherche, 'id="searchbar"' pour le styliser avec css -->
-                <form id="search-form" onsubmit="findMovie(); return false;"> <!-- formulaire pour la recherche, 'id="search-form"' pour le styliser avec css, 'onsubmit="findMovie(); return false;"' pour appeler la fonction findMovie au submit et empêcher le rechargement de la page -->
-                    <div class="search"> <!-- div pour contenir les éléments de recherche, 'class="search"' pour le styliser avec css -->
-                        <span class="material-symbols-outlined">search</span> <!-- icône de recherche, 'class="material-symbols-outlined"' pour le styliser avec css -->
-                        <input id="searchbartext" type="text" placeholder="Find your Flick 🎬" oninput="showSuggestions()"> <!-- champ de texte pour la recherche, 'id="searchbartext"' pour le styliser avec css, 'placeholder="find your flick 🎬"' pour le texte d'indication, 'oninput="showSuggestions()"' pour appeler la fonction showSuggestions a chaque saisie -->
+
+        <!-- Search bar section -->
+        <div id="searchbar-container">
+            <div id="searchbar">
+                <form id="search-form" onsubmit="findMovie(); return false;">
+                    <div class="search">
+                        <span class="material-symbols-outlined">search</span>
+                        <input id="searchbartext" type="text" placeholder="Find your Flick 🎬" oninput="showSuggestions()">
                     </div>
-                    <div id="suggestions-dropdown" class="dropdown-content"></div> <!-- div pour afficher les suggestions de films, 'id="suggestions-dropdown"' pour le styliser avec css, 'class="dropdown-content"' pour le styliser avec css -->
+                    <div id="suggestions-dropdown" class="dropdown-content"></div>
                 </form>
             </div>
-            <div class="search-buttons"> <!-- div pour contenir les boutons de recherche, 'class="search-buttons"' pour le styliser avec css -->
-                <button type="submit" form="search-form">Search</button> <!-- bouton pour soumettre le formulaire de recherche, 'type="submit"' pour le soumettre, 'form="search-form"' pour l'associer au formulaire de recherche -->
-                <button id="random-button" type="button" onclick="getRandomMovie()">Random!</button> <!-- bouton pour obtenir un film aléatoire, 'id="random-button"' pour le styliser avec css, 'type="button"' pour un bouton classique, 'onclick="getRandomMovie()"' pour appeler la fonction getRandomMovie au clic -->
+
+            <!-- Search buttons (Search and Random) -->
+            <div class="search-buttons">
+                <button type="submit" form="search-form">Search</button>
+                <button id="random-button" type="button">Random!</button>
             </div>
         </div>
-        <div id="results-container"> <!-- conteneur pour les résultats de recherche, 'id="results-container"' pour le styliser avec css -->
-            <div id="results"></div> <!-- div pour afficher les résultats de recherche, 'id="results"' pour le styliser avec css -->
+
+        <!-- Results display container -->
+        <div id="results-container">
+            <div id="results"></div>
         </div>
-        <div id="filter-container"> <!-- conteneur pour les filtres de recherche, 'id="filter-container"' pour le styliser avec css -->
-            <form id="filter-form"> <!-- formulaire pour les filtres de recherche, 'id="filter-form"' pour le styliser avec css -->
-                <input type="number" id="year" placeholder="year" min="1874" max="2024"> <!-- champ de texte pour filtrer par annee, 'type="number"' pour un champ numérique, 'id="year"' pour le styliser avec css, 'placeholder="year"' pour le texte d'indication, 'min="1874"' pour l'annee minimale, 'max="2024"' pour l'annee maximale -->
-                <button type="submit">Filter</button> <!-- bouton pour soumettre le formulaire de filtre, 'type="submit"' pour le soumettre -->
+
+        <!-- Filter section -->
+        <div id="filter-container">
+            <form id="filter-form">
+                <input type="number" id="year" placeholder="Year" min="1874" max="2024">
+                <button type="submit">Filter</button>
             </form>
         </div>
-        <h3 id="suggestions-header">3-star movie suggestions</h3> <!-- titre de niveau 3 pour les suggestions de films trois étoiles, 'id="suggestions-header"' pour le styliser avec css -->
-        <div id="suggestions"> <!-- conteneur pour les suggestions de films, 'id="suggestions"' pour le styliser avec css -->
-            <div id="suggestions-list" class="scrolling-list"></div> <!-- div pour afficher la liste des suggestions de films, 'id="suggestions-list"' pour le styliser avec css, 'class="scrolling-list"' pour le styliser avec css -->
-            <div id="pagination"></div> <!-- div pour afficher les boutons de pagination, 'id="pagination"' pour le styliser avec css -->
-        </div> 
+
+        <!-- Carousel section with previous and next buttons -->
+        <h3 id="suggestions-header">3-star movie suggestions</h3>
+        <div id="suggestions">
+            <!-- Previous button -->
+            <button id="carousel-prev" class="carousel-button" onclick="scrollCarousel('prev')">&lt;</button>
+
+            <!-- Carousel items container -->
+            <div id="suggestions-list" class="scrolling-list"></div>
+
+            <!-- Next button -->
+            <button id="carousel-next" class="carousel-button" onclick="scrollCarousel('next')">&gt;</button>
+
+            <!-- Pagination controls (if applicable) -->
+            <div id="pagination"></div>
+        </div>
     </div>
-    
-    <div id="popup-description" class="modal"> <!-- fenêtre pop-up pour la description, 'id="popup-description"' pour le styliser avec css, 'class="modal"' pour le styliser avec css -->
-        <div class="modal-content"> <!-- contenu de la fenêtre pop-up, 'class="modal-content"' pour le styliser avec css -->
-            <span class="close">&times;</span> <!-- bouton de fermeture de la fenêtre pop-up, 'class="close"' pour le styliser avec css -->
-            <h3>Description</h3> <!-- titre de niveau 3 pour la description -->
-            <p>Hey dolls! is your fave flick as fab as barbie's world? <br/> try the Bechdel test! <!-- paragraphe avec une ligne de texte et un saut de ligne -->
-            <ul> <!-- liste non ordonnée -->
-                <li>Two named women, like Barbie and her BFFs! 🌟</li> <!-- élément de liste -->
-                <li>They chat? totally! 💬</li> <!-- élément de liste -->
-                <li>Not about Ken. Maybe dreams or adventures? 🌍</li> <!-- élément de liste -->
+
+    <!-- Popup modals for description and rating explanations -->
+    <div id="popup-description" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Description</h3>
+            <p>Hey dolls! Is your fave flick as fab as Barbie's world? <br> Try the Bechdel test!
+            <ul>
+                <li>Two named women, like Barbie and her BFFs! 🌟</li>
+                <li>They chat? Totally! 💬</li>
+                <li>Not about Ken. Maybe dreams or adventures? 🌍</li>
             </ul>
-            It's a fun way to check how girl-powered your media is.<br/> <!-- paragraphe avec un saut de ligne -->
-            Stay fabulous! 💅✨</p> <!-- fin du paragraphe -->
+            It's a fun way to check how girl-powered your media is.<br> Stay fabulous! 💅✨</p>
         </div>
     </div>
-    
-    <div id="popup-rating" class="modal"> <!-- fenêtre pop-up pour l'explication des notes, 'id="popup-rating"' pour le styliser avec css, 'class="modal"' pour le styliser avec css -->
-        <div class="modal-content"> <!-- contenu de la fenêtre pop-up, 'class="modal-content"' pour le styliser avec css -->
-            <span class="close">&times;</span> <!-- bouton de fermeture de la fenêtre pop-up, 'class="close"' pour le styliser avec css -->
-            <h3>Bechdel test rating explanation</h3> <!-- titre de niveau 3 pour l'explication des notes -->
-            <p><strong class="gold-star">☆☆☆</strong>: Fails all bechdel test criteria.</p>
-            <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p> 
+
+    <div id="popup-rating" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Bechdel Test Rating Explanation</h3>
+            <p><strong class="gold-star">☆☆☆</strong>: Fails all Bechdel test criteria.</p>
+            <p><strong class="gold-star">⭐️☆☆</strong>: Has two named women, but they don't talk.</p>
             <p><strong class="gold-star">⭐️⭐️☆</strong>: Two named women talk, but about men.</p>
-            <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all bechdel test criteria.</p> 
+            <p><strong class="gold-star">⭐️⭐️⭐️</strong>: Meets all Bechdel test criteria.</p>
         </div>
     </div>
+
 </body>
 </html>
